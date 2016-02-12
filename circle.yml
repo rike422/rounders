@@ -1,0 +1,36 @@
+########################
+# Customize the test machine
+########################
+machine:
+
+  timezone:
+    Asia/Tokyo
+
+  # Version of ruby to use
+  ruby:
+    version:
+      2.3.0
+
+########################
+# Customize dependencies
+########################
+dependencies:
+  cache_directories:
+    - "vendor/bundle"
+  override:
+    - bundle -j4 --path=vendor/bundle
+
+########################
+# Customize test commands
+########################
+test:
+  post:
+    - bundle exec rake
+
+########################
+# Custom notifications
+########################
+notify:
+  webhooks:
+    # A list of hashes representing hooks. Only the url field is supported.
+    - url: https://circleci.com/hooks/circle
