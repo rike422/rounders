@@ -7,3 +7,24 @@
 /pkg/
 /spec/reports/
 /tmp/
+### https://raw.github.com/github/gitignore/0aeefb48c0ac885a516fb92f7f5bfd7e85ce7a37/Rails.gitignore
+
+*.rbc
+*.sassc
+.sass-cache
+capybara-*.html
+.rspec
+.rvmrc
+/.bundle
+/vendor/bundle
+/log/*
+/tmp/*
+/db/*.sqlite3
+/public/system/*
+/coverage/
+/spec/tmp/*
+**.orig
+rerun.txt
+pickle-email-*.html
+.project
+
