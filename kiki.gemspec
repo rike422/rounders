@@ -28,5 +28,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-bundler', '~> 2.1.0'
   spec.add_development_dependency 'guard-rspec', '~> 4.6.0'
   spec.add_development_dependency 'guard-rubocop', '~> 1.2.0'
+  spec.add_development_dependency 'pry'
   spec.add_dependency 'mail', '~> 2.6.3'
 end
