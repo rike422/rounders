@@ -1,5 +1,6 @@
 # Kiki [![Circle CI](https://circleci.com/gh/rike422/kiki.svg?style=svg)](https://circleci.com/gh/rike422/kiki)  [![Code Climate](https://codeclimate.com/github/rike422/kiki/badges/gpa.svg)](https://codeclimate.com/github/rike422/kiki)
 
+The mail processing framework like a Bot, inspired by ruboty and mailman
 
 ## Installation
 
