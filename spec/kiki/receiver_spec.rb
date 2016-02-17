@@ -10,6 +10,6 @@ describe Kiki::Receiver do
     it { is_expected.to be_a described_class }
   end
 
-  describe '#recieve' do
+  describe '#receive' do
   end
 end
