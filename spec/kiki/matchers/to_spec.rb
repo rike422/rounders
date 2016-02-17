@@ -9,7 +9,7 @@ describe Kiki::Matchers::To do
     subject { described_class }
     it { is_expected.to be_a Kiki::Matchers::Matcher }
   end
-  
+
   describe '.new' do
     subject { described_instance }
     it { is_expected.to be_a described_class }
