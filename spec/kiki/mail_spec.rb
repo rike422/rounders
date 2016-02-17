@@ -5,14 +5,6 @@ describe Kiki::Mail do
   let(:described_instance) { described_class.new(*arguments) }
   let(:arguments) { [] }
 
-  it 'has a version number' do
-    expect(Kiki::VERSION).not_to be nil
-  end
-
-  it 'does something useful' do
-    expect(false).to eq(true)
-  end
-
   describe '#body' do
     let(:body) { 'body message' }
     it 'should be forwadable @massage.body' do
