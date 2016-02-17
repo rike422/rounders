@@ -6,6 +6,7 @@ end
 
 require 'kiki/configuration'
 require 'kiki/mail'
+require 'kiki/receiver'
 require 'kiki/rounder'
 require 'kiki/actions/base'
 require 'kiki/brains/base'
