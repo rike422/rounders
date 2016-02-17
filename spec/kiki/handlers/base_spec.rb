@@ -9,7 +9,7 @@ describe Kiki::Handlers::Base do
     subject { described_instance }
     it { is_expected.to be_a described_class }
   end
-  
+
   describe '#on' do
     # subject { described_instance.on(arguments) }
     # let(:arguments) do
