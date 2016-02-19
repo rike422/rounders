@@ -5,6 +5,7 @@ module Kiki
 end
 
 require 'kiki/configuration'
+require 'kiki/commander'
 require 'kiki/mail'
 require 'kiki/receiver'
 require 'kiki/rounder'
