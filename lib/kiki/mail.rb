@@ -1,9 +1,7 @@
-require 'mail'
-
 module Kiki
   class Mail
-    def initialize(option)
-      @mail = Mail.new(option)
+    def initialize(mail)
+      @mail = mail
     end
   end
 end

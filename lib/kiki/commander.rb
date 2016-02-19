@@ -1,5 +1,3 @@
-require 'slop'
-
 module Kiki
   class Commander
     attr_reader :arguments

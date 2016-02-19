@@ -4,6 +4,9 @@ module Kiki
   # Your code goes here...
 end
 
+require 'mail'
+require 'slop'
+
 require 'kiki/configuration'
 require 'kiki/commander'
 require 'kiki/mail'
