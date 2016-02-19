@@ -6,6 +6,7 @@ end
 
 require 'mail'
 require 'slop'
+require 'forwardable'
 
 require 'kiki/configuration'
 require 'kiki/commander'
