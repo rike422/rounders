@@ -2,16 +2,11 @@ require 'spec_helper'
 
 describe Kiki::Matchers::Body do
   let(:described_class) { Kiki::Matchers::Body }
-  let(:described_instance) { described_class.new(arguments) }
-  let(:arguments) do
-    {
-      pattern: /body Message/
-    }
-  end
-
+  let(:described_instance) { described_class.new(*arguments) }
+  let(:arguments) { [/body Message/] }
   describe '#inherited' do
-    subject { described_class }
-    it { is_expected.to be_a Kiki::Matchers::Matcher }
+    subject { described_class.superclass }
+    it { is_expected.to eq Kiki::Matchers::Matcher }
   end
 
   describe '.new' do
@@ -29,16 +24,11 @@ describe Kiki::Matchers::Body do
   end
 
   describe '#match' do
-    let(:arguments) do
-      {
-        pattern: /rounder/
-      }
-    end
-    let(:message) do
-      instance_double('Message', body: "Hi! I'm rounder, Please give me some instructions!!")
-    end
-    it 'should retrun MatchData' do
-      expect(described_incetane.match(message)).to_not be_nil
+    let(:arguments) { [/email/] }
+    let(:message) { Mail.new(body: 'This is a body of the email') }
+    it 'should return MatchData' do
+      expect(message.body).to receive(:match).with(arguments[0]).and_return message.body.match(arguments[0])
+      expect(described_instance.match(message)).to_not be_nil
     end
   end
 end
