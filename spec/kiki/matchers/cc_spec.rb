@@ -3,11 +3,18 @@ require 'spec_helper'
 describe Kiki::Matchers::CC do
   let(:described_class) { Kiki::Matchers::CC }
   let(:described_instance) { described_class.new(*arguments) }
-  let(:arguments) { [] }
+  let(:arguments) { [/@github.com/] }
+  let(:cc_addresses) do
+    [
+      'user1@github.com',
+      'customer2@github.com',
+      'publisher@rubygems.com'
+    ]
+  end
 
   describe '#inherited' do
-    subject { described_class }
-    it { is_expected.to be_a Kiki::Matchers::Matcher }
+    subject { described_class.superclass }
+    it { is_expected.to eq Kiki::Matchers::Matcher }
   end
 
   describe '.new' do
@@ -25,31 +32,18 @@ describe Kiki::Matchers::CC do
   end
 
   describe '#match' do
-    context 'when Message.cc is a Array' do
+    context 'when Message.from.addresses is a Array' do
       let(:arguments) do
-        {
-          pattern: /github.com/
-        }
+        [
+          /github.com/
+        ]
       end
       let(:message) do
-        instance_double('Message', cc: ['rike422@github.com', 'rike422+2@github.com'])
+        Mail.new(cc: cc_addresses)
       end
       it 'should return Array of MatchData' do
-        expect(described_incetane.match(message)).to_not be_a(Array)
-        expect(described_incetane.match(message)).to all be_a(MatchData)
-      end
-    end
-    context 'when Message.cc be a string' do
-      let(:arguments) do
-        {
-          pattern: /github.com/
-        }
-      end
-      let(:message) do
-        instance_double('Message', cc: 'rike422@github.com')
-      end
-      it 'should return Array of MatchData' do
-        expect(described_incetane.match(message)).to_not be_a(Array)
+        expect(described_instance.match(message)).to be_a(Array)
+        expect(described_instance.match(message)).to all be_a(MatchData)
       end
     end
   end
