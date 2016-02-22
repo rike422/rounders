@@ -30,5 +30,12 @@ describe Kiki::Matchers::Subject do
       expect(message.subject).to receive(:match).with(arguments[0]).and_return message.subject.match(arguments[0])
       expect(described_instance.match(message)).to_not be_nil
     end
+
+    context 'when message.subject is nil' do
+      let(:message) { Kiki::Mail.new(Mail.new) }
+      it 'should return nil' do
+        expect(described_instance.match(message)).to be_nil
+      end
+    end
   end
 end

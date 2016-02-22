@@ -8,6 +8,7 @@ module Kiki
       end
 
       def match(mail)
+        return if mail.body.nil?
         mail.body.match(pattern)
       end
     end

@@ -46,5 +46,29 @@ describe Kiki::Matchers::From do
         expect(described_instance.match(message)).to all be_a(MatchData)
       end
     end
+    context 'when Message.from is a String' do
+      let(:arguments) do
+        [
+          /github.com/
+        ]
+      end
+      let(:message) do
+        Mail.new(from: 'rike422@github.com')
+      end
+      it 'should return Array of MatchData' do
+        expect(described_instance.match(message)).to be_a(Array)
+        expect(described_instance.match(message)).to all be_a(MatchData)
+      end
+    end
+    context 'when Message.from is nil' do
+      let(:message) do
+        Kiki::Mail.new(
+          Mail.new
+        )
+      end
+      it 'should return nil' do
+        expect(described_instance.match(message)).to be_nil
+      end
+    end
   end
 end

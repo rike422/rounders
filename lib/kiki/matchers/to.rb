@@ -8,6 +8,7 @@ module Kiki
       end
 
       def match(message)
+        return if message.to.nil?
         matches = message.to.map do |address|
           address.match(pattern)
         end
