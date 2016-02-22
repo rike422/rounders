@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
   spec.add_dependency 'mail', '~> 2.6.3'
   spec.add_dependency 'slop'
+  spec.add_dependency 'activesupport'
 end
