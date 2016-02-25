@@ -12,10 +12,6 @@ describe Kiki::Rounder do
     subject { described_instance.run }
   end
 
-  describe '#recieve' do
-    subject { described_instance.recieve }
-  end
-
   describe '#brain' do
   end
 end
