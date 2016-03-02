@@ -70,7 +70,7 @@ describe Kiki::Receiver do
       Kiki::Receiver.new(client: retriever)
     end
     let(:sub_receivers) do
-      (messages - messages[0..5]).reverse.map do |message|
+      (messages - messages[0..5]).shuffle.map do |message|
         retriever = ::Mail::POP3.new({})
         allow(retriever).to receive(:find).and_return([message])
         Kiki::Receiver.new(client: retriever)
