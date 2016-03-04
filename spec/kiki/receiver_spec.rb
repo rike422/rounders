@@ -18,12 +18,12 @@ describe Kiki::Receiver do
   before(:each) do
     described_class.reset
   end
-  describe '.add' do
+  describe '.build' do
     it 'should be a Kiki::Receiver' do
-      expect(described_class.add).to be_a described_class
+      expect(described_class.build).to be_a described_class
     end
     it 'should push Kiki::Receiver to @receiver' do
-      expect { described_class.add }.to change { described_class.send(:sub_receivers).length }.by(+1)
+      expect { described_class.build }.to change { described_class.send(:sub_receivers).length }.by(+1)
     end
   end
 

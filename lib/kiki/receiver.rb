@@ -24,7 +24,7 @@ module Kiki
     end
 
     class << self
-      def add
+      def build
         receiver = new
         sub_receivers.push(receiver)
         receiver
