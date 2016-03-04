@@ -13,11 +13,13 @@ module Kiki
           end
         end
 
-        def dispatch(rounder, mail)
-          dispatchers.each do |dispatcher|
-            matches = dispatcher.matcher.match(mail)
-            next if matches.blank?
-            new(rounder, matches).my_callback mail
+        def dispatch(rounder, mails)
+          mails.map do |mail|
+            dispatchers.each do |dispatcher|
+              matches = dispatcher.matcher.match(mail)
+              next if matches.blank?
+              new(rounder, matches).public_send(dispatcher.method_name, mail)
+            end
           end
         end
 
