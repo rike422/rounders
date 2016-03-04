@@ -10,6 +10,7 @@ require 'forwardable'
 require 'active_support/core_ext/object'
 require 'active_support/inflector'
 
+require 'kiki/pluggable'
 require 'kiki/commander'
 require 'kiki/mail'
 require 'kiki/receiver'

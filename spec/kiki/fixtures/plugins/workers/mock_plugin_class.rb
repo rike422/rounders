@@ -1,0 +1,1 @@
+class MockPlugin < Worker; end
