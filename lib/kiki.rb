@@ -17,7 +17,7 @@ require 'kiki/receiver'
 require 'kiki/rounder'
 require 'kiki/actions/base'
 require 'kiki/brains/base'
-require 'kiki/handlers/base'
+require 'kiki/handlers/handler'
 
 require 'kiki/matchers/matcher'
 require 'kiki/matchers/subject'
