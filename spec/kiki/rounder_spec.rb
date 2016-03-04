@@ -5,13 +5,10 @@ describe Kiki::Rounder do
   let(:described_instance) { described_class.new(*arguments) }
   let(:arguments) { [] }
 
-  describe '#initialize' do
-  end
-
-  describe '#run' do
-    subject { described_instance.run }
-  end
-
-  describe '#brain' do
+  describe '#start' do
+    it 'should start polling' do
+      expect(described_instance).to receive(:polling)
+      described_instance.start
+    end
   end
 end
