@@ -11,7 +11,7 @@ module Kiki
 
     module ClassMethods
       def directory_name
-        @directory_name ||= name.downcase.pluralize
+        @directory_name ||= name.demodulize.downcase.pluralize
       end
 
       def load_path
