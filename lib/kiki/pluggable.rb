@@ -19,7 +19,7 @@ module Kiki
       end
 
       def load_plugins
-        Pathname.glob(load_path).each do |plugin|
+        Pathname.glob("#{load_path}/*.rb").each do |plugin|
           require_relative plugin.expand_path
         end
       end
