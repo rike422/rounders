@@ -1,4 +1,10 @@
 
+AllCops:
+  Exclude:
+     - 'vendor/**/*'
+     - 'spec/fixtures/**/*'
+     - 'tmp/**/*'
+     - 'templates/*'
 ##################### Metrics ##################################
 
 Metrics/LineLength:
@@ -10,7 +16,6 @@ Metrics/ClassLength:
 
 Metrics/LineLength:
   Max: 150
-
 
 ##################### Style ##################################
 
