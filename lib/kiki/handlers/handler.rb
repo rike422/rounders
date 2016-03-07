@@ -1,6 +1,7 @@
 module Kiki
   module Handlers
     class Handler
+      include Kiki::Pluggable
       attr_reader :matches, :rouder
 
       class << self

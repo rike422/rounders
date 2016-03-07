@@ -4,6 +4,7 @@ module Kiki
     end
 
     class Matcher
+      include Kiki::Pluggable
       attr_reader :matchers
 
       def initialize(matchers)
