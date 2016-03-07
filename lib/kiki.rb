@@ -24,3 +24,6 @@ require 'kiki/matchers/body'
 require 'kiki/matchers/cc'
 require 'kiki/matchers/from'
 require 'kiki/matchers/to'
+
+require 'kiki/generators/generator'
+require 'kiki/generators/handler'
