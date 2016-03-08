@@ -33,8 +33,11 @@ describe Kiki::Commander do
   end
 
   describe '#argv' do
+    before(:each) do
+      ARGV.clear
+    end
     it 'should support help command' do
-      expect_any_instance_of(Slop).to receive(:on).
+      expect_any_instance_of(Slop::Options).to receive(:on).
         with('-h', '--help', 'Display this help message.')
       described_instance.send(:argv)
     end
