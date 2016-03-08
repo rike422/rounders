@@ -5,7 +5,7 @@ module Kiki
 end
 
 require 'mail'
-require 'slop'
+require 'thor'
 require 'forwardable'
 require 'active_support/core_ext/object'
 require 'active_support/inflector'
