@@ -23,9 +23,11 @@ module Kiki
 
       def generate
         mkpath
-        output_path.join(file_name).open('w+') do |file|
+        file_path = output_path.join(file_name)
+        file_path.open('w+') do |file|
           file.puts(render)
         end
+        puts "create #{file_path}"
       end
 
       private
