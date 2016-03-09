@@ -1,9 +1,11 @@
 module Kiki
   module Generators
     class Handler < Generator
-      def initialize(name: nil, argv: [])
-        @name = name
-        @argv = argv
+      attr_accessor :handlers
+
+      def initialize(name: nil, handlers: [])
+        super(name)
+        @handlers = handlers
       end
     end
   end
