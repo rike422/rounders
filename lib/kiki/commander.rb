@@ -1,27 +1,18 @@
+require 'kiki/commands/generate'
+
 module Kiki
-  class Commander
-    attr_reader :arguments
+  class Commander < Thor
+    class_option :help, type: :boolean, aliases: '-h', desc: 'Help message.'
+    package_name 'kiki'
 
-    def initialize(arguments = ARGV)
-      @arguments = arguments
+    desc 'start', 'Start the Kiki'
+    method_option aliases: '-s'
+    def start
+      Kiki::Rounder.new.start
     end
 
-    def execute
-      case
-      when argv[:help]
-        puts argv
-        exit
-      else
-        puts 'TODO!!'
-      end
-    end
-
-    private
-
-    def argv
-      Slop.parse(arguments) do |options|
-        options.on('-h', '--help', 'Display this help message.')
-      end
-    end
+    desc 'generate [Type]', 'Generate new code'
+    method_option aliases: '-g'
+    subcommand 'generate', Kiki::Commands::Generate
   end
 end
