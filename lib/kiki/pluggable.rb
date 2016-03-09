@@ -5,7 +5,6 @@ module Kiki
     class << self
       def included(klass)
         klass.extend Kiki::Pluggable::ClassMethods
-        klass.load_plugins
       end
     end
 
