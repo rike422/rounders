@@ -2,13 +2,13 @@ require 'mustache'
 module Kiki
   module Generators
     class Generator < Mustache
-      include Kiki::Pluggable
+      include Kiki::Plugins::Pluggable
       attr_reader :name
 
       class << self
         def inherited(klass)
-          klass.template_path = 'templates'
-          klass.template_name = klass.name.demodulize.downcase
+          klass.template_path      = 'templates'
+          klass.template_name      = klass.name.demodulize.downcase
           klass.template_extension = 'mustache.rb'
         end
       end
@@ -41,7 +41,7 @@ module Kiki
       end
 
       def output_path
-        Pathname("#{Kiki::Pluggable::PLUGIN_BASE_DIR_PATH}/#{self.class.directory_name}")
+        Pathname("#{Kiki::Plugins::Pluggable::PLUGIN_BASE_DIR_PATH}/#{self.class.directory_name}")
       end
     end
   end

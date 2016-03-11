@@ -1,9 +1,8 @@
 module Kiki
   module Handlers
     class Handler
-      include Kiki::Pluggable
+      include Kiki::Plugins::Pluggable
       attr_reader :matches, :rouder
-
       class << self
         class Dispatcher
           attr_reader :matcher, :method_name
@@ -36,7 +35,7 @@ module Kiki
         end
 
         def handlers
-          @_handlers ||= []
+          @handlers ||= []
         end
 
         def dispatchers
