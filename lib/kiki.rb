@@ -11,7 +11,8 @@ require 'active_support/inflector'
 require 'mail'
 
 require 'kiki/mail'
-require 'kiki/pluggable'
+require 'kiki/plugins/plugin_loader'
+require 'kiki/plugins/pluggable'
 require 'kiki/matchers/matcher'
 require 'kiki/matchers/subject'
 require 'kiki/matchers/body'
@@ -23,7 +24,6 @@ require 'kiki/commander'
 require 'kiki/receiver'
 require 'kiki/rounder'
 require 'kiki/brains/base'
-
 
 require 'kiki/generators/generator'
 require 'kiki/generators/handler'
