@@ -16,8 +16,8 @@ module Kiki
           exit
         end
         app_path.mkpath
-        p template_path
         FileUtils.copy_entry(template_path, app_path)
+        puts "create #{name}"
       end
 
       def template_path
