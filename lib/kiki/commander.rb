@@ -14,7 +14,7 @@ module Kiki
       end
 
       def app_path?
-        Pathname('./initializers/').exist?
+        Pathname('./config/initializers').exist?
       end
     end
   end

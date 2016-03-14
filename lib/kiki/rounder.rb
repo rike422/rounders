@@ -2,11 +2,17 @@ module Kiki
   class Rounder
     DEFAULT_INTERVAL = 100
     def start
+      setup
       polling
     end
 
     private
 
+    def load_config
+      Pathname.glob('./config/initializers/*.rb').each do |config|
+        require config
+      end
+    end
     def polling
       loop do
         round
@@ -24,6 +30,11 @@ module Kiki
 
     def receive_mail
       Kiki::Receiver.receive
+    end
+
+    def setup
+      load_config
+      PluginLoader.load_plugins
     end
 
     def interval
