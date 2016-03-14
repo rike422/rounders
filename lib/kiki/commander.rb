@@ -1,18 +1,21 @@
-require 'kiki/commands/generate'
+require 'kiki/commands/sub_commands/generate'
 
 module Kiki
-  class Commander < Thor
-    class_option :help, type: :boolean, aliases: '-h', desc: 'Help message.'
-    package_name 'kiki'
+  class Commander
+    class << self
+      def start(argv = ARGV)
+        if app_path?
+          require 'kiki/commands/local_command'
+          Commands::LocalCommand.start(argv)
+        else
+          require 'kiki/commands/global_command'
+          Commands::GlobalCommand.start(argv)
+        end
+      end
 
-    desc 'start', 'Start the Kiki'
-    method_option aliases: '-s'
-    def start
-      Kiki::Rounder.new.start
+      def app_path?
+        Pathname('./initializers/').exist?
+      end
     end
-
-    desc 'generate [Type]', 'Generate new code'
-    method_option aliases: '-g'
-    subcommand 'generate', Kiki::Commands::Generate
   end
 end

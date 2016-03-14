@@ -26,4 +26,5 @@ require 'kiki/rounder'
 require 'kiki/brains/base'
 
 require 'kiki/generators/generator'
+require 'kiki/generators/app'
 require 'kiki/generators/handler'
