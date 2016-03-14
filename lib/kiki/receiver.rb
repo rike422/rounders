@@ -38,7 +38,7 @@ module Kiki
 
       def create_client(config)
         retriever = parser.lookup_retriever_method(config.protocol)
-        retriever.new(config.option)
+        new(client: retriever.new(config.option))
       end
 
       def receive

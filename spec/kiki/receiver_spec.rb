@@ -49,7 +49,7 @@ describe Kiki::Receiver do
     let(:retriever) { Mail::POP3 }
     it 'should call Mail::Configuration::lookup_retriever_method' do
       expect_any_instance_of(::Mail::Configuration).to receive(:lookup_retriever_method).with(config.protocol).and_call_original
-      described_class.create_client(config)
+      expect(described_class.create_client(config)).to be_a described_class
     end
     it 'should create Mail::Retriever with' do
       expect(retriever).to receive(:new).with(config.option)
