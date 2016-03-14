@@ -4,11 +4,12 @@ module Kiki
   # Your code goes here...
 end
 
-require 'thor'
-require 'forwardable'
 require 'active_support/core_ext/object'
 require 'active_support/inflector'
+require 'thor'
+require 'forwardable'
 require 'mail'
+require 'dotenv'
 
 require 'kiki/mail'
 require 'kiki/plugins/plugin_loader'
