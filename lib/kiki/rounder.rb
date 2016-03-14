@@ -1,6 +1,11 @@
 module Kiki
   class Rounder
     DEFAULT_INTERVAL = 100
+
+    def dotenv
+      Dotenv.load
+    end
+
     def start
       setup
       polling
@@ -13,6 +18,7 @@ module Kiki
         require config
       end
     end
+
     def polling
       loop do
         round
@@ -34,7 +40,7 @@ module Kiki
 
     def setup
       load_config
-      PluginLoader.load_plugins
+      Kiki::Plugins::PluginLoader.load_plugins
     end
 
     def interval

@@ -6,9 +6,11 @@ module Kiki
 
       desc 'start', 'Start the Kiki'
       method_option aliases: '-s'
-
+      option :dotenv
       def start
-        Kiki::Rounder.new.start
+        rounder = Kiki::Rounder.new
+        rounder.dotenv if options[:dotenv]
+        rounder.start
       end
 
       desc 'generate [Type]', 'Generate new code'
