@@ -21,7 +21,7 @@ describe Kiki::Generators::Generator do
   describe '#output_path' do
     it 'should retrun directory path' do
       expect(generator_instance.send(:output_path)).to be_a Pathname
-      expect(generator_instance.send(:output_path).to_s).to eq 'plugins/workers'
+      expect(generator_instance.send(:output_path).to_s).to eq File.join(Dir.pwd, 'plugins/workers')
     end
   end
 end
