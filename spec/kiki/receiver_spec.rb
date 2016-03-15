@@ -27,7 +27,7 @@ describe Kiki::Receiver do
 
   describe '.create_client' do
     before(:each) do
-      config.protocol            = :pop3
+      config.protocol = :pop3
       config.mail_server_settings = {
         address:        'localhost',
         port:           110,
@@ -35,6 +35,9 @@ describe Kiki::Receiver do
         password:       nil,
         authentication: nil,
         enable_ssl:     true
+      }
+      config.find_options = {
+        count: 30
       }
     end
     let(:retriever) { Mail::POP3 }
@@ -83,9 +86,15 @@ describe Kiki::Receiver do
 
   describe '#receive' do
     let(:client) { ::Mail::POP3.new({}) }
+    let(:find_options) do
+      {
+        count: 30,
+        delete_after_find: true
+      }
+    end
     let(:arguments) do
       [
-        { client: client }
+        { client: client, find_options: find_options }
       ]
     end
     before(:each) do
@@ -95,7 +104,11 @@ describe Kiki::Receiver do
     it { is_expected.to be_a Array }
     it { is_expected.to all be_a(Kiki::Mail) }
     it 'should find unread email' do
-      expect(client).to receive(:find).with(keys: %w(NOT SEEN))
+      expect(client).to receive(:find).with(
+        keys: %w(NOT SEEN),
+        count: find_options[:count],
+        delete_after_find: find_options[:delete_after_find]
+      )
       described_instance.receive
     end
   end

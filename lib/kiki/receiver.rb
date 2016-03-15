@@ -3,24 +3,28 @@ module Kiki
     class Config
       attr_accessor :protocol
       attr_accessor :mail_server_settings
+      attr_accessor :find_options
     end
+    DEFALUT_FIND_OPTION = {
+      keys: %w(NOT SEEN)
+    }.freeze
+    attr_reader :client, :find_options
 
-    attr_reader :client
-
-    def initialize(client: nil)
+    def initialize(client: nil, find_options: {})
       @client = client
-    end
-
-    def receive
-      @client.
-        find(keys: %w(NOT SEEN)).
-        map { |message| Kiki::Mail.new(message) }
+      @find_options = DEFALUT_FIND_OPTION.merge(find_options)
     end
 
     def configure
       config = Config.new
       yield config
       @client = Receiver.create_client(config)
+    end
+
+    def receive
+      @client.
+        find(find_options).
+        map { |message| Kiki::Mail.new(message) }
     end
 
     class << self
@@ -32,7 +36,9 @@ module Kiki
 
       def create_client(config)
         retriever = parser.lookup_retriever_method(config.protocol)
-        new(client: retriever.new(config.mail_server_settings))
+        new(
+          client: retriever.new(config.mail_server_settings),
+          find_options: config.find_options)
       end
 
       def receive
@@ -43,7 +49,7 @@ module Kiki
       end
 
       def reset
-        @receiver  = nil
+        @receiver = nil
         @receivers = nil
       end
 
