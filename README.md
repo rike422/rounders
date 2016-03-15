@@ -1,6 +1,6 @@
 # Kiki [![Circle CI](https://circleci.com/gh/rike422/kiki.svg?style=svg)](https://circleci.com/gh/rike422/kiki)  [![Code Climate](https://codeclimate.com/github/rike422/kiki/badges/gpa.svg)](https://codeclimate.com/github/rike422/kiki)
 
-The mail processing framework like a Bot, inspired by ruboty and mailman
+The pluggalbe mail processing framework
 
 ## Installation
 
@@ -20,7 +20,57 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### create bot
+
+create a new bot by running the kiki new command after installing kiki.
+
+```
+kiki new [name]
+```
+
+### generator
+
+#### handler
+
+The `kiki generate handler` command create template of handler into ./plugins/handlers/
+
+```
+kiki generate handler [name] [method1, method2...] `
+```
+##### example
+
+```ruby
+module Kiki
+  module Handlers
+    class MyHandler < Kiki::Handlers::Handler
+      # mail.body is include 'exmpale'
+      on({ body: 'example' }, :callback_method1)
+      # body include 'exmpale' AND subject include 'my_subject'
+      on({ 
+		  body: 'example',
+		  subject: /my_subject/},
+		  :callback_method2)
+​
+      def method1(mail)
+        // any process
+      end
+​
+      def method2(mail)
+         // any process
+      end
+    end
+  end
+end
+
+```
+
+#### matcher 
+
+coming soon...
+
+#### reciever
+
+coming soon...
 
 ## Development
 
