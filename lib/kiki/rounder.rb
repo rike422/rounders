@@ -1,6 +1,6 @@
 module Kiki
   class Rounder
-    DEFAULT_INTERVAL = 100
+    DEFAULT_INTERVAL = 10
 
     def dotenv
       Dotenv.load
