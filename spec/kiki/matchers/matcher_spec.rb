@@ -64,7 +64,7 @@ describe Kiki::Matchers::Matcher do
       let(:arguments) do
         {
           from: /missMatchFrom/,
-          subject: /missMatch/
+          subject: /subject/
         }
       end
       it 'return nil' do

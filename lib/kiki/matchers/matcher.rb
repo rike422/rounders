@@ -14,7 +14,7 @@ module Kiki
         match_data = matchers.each_with_object({}) do |matcher, memo|
           memo[matcher.class.name.demodulize.underscore.to_sym] = matcher.match(message)
         end
-        return match_data if match_data.values.any?(&:present?)
+        return match_data if match_data.values.all?(&:present?)
         nil
       end
 
