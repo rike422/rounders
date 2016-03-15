@@ -1,10 +1,10 @@
 Kiki::Receiver.configure do |config|
   # please show more option
   #
-  config.protocol = :pop3
+  config.protocol = :imap
   config.mail_server_settings = {
-    address:    'pop.gmail.com',
-    port:       995,
+    address:    'imap.gmail.com',
+    port:       993,
     user_name:  ENV['GMAIL_USER_NAME'],
     password:   ENV['GMAIL_PASSWORD'],
     enable_ssl: true
