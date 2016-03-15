@@ -18,15 +18,6 @@ describe Kiki::Receiver do
   before(:each) do
     described_class.reset
   end
-  describe '.build' do
-    it 'should be a Kiki::Receiver' do
-      expect(described_class.build).to be_a described_class
-    end
-    it 'should push Kiki::Receiver to @receiver' do
-      expect { described_class.build }.to change { described_class.send(:sub_receivers).length }.by(+1)
-    end
-  end
-
   describe '.configure' do
     it 'should yield with Kiki::Receiver::Config' do
       expect(described_class).to receive(:create_client).with(be_a(Kiki::Receiver::Config))
@@ -64,23 +55,14 @@ describe Kiki::Receiver do
   end
 
   describe '.receive' do
-    let(:main_receiver) do
+    let(:receiver) do
       retriever = ::Mail::POP3.new({})
-      allow(retriever).to receive(:find).and_return messages[0..5]
+      allow(retriever).to receive(:find).and_return messages
       Kiki::Receiver.new(client: retriever)
     end
-    let(:sub_receivers) do
-      (messages - messages[0..5]).shuffle.map do |message|
-        retriever = ::Mail::POP3.new({})
-        allow(retriever).to receive(:find).and_return([message])
-        Kiki::Receiver.new(client: retriever)
-      end
-    end
     before(:each) do
-      described_class.instance_variable_set(:@receiver, main_receiver)
-      described_class.instance_variable_set(:@sub_receivers, sub_receivers)
+      described_class.instance_variable_set(:@receiver, receiver)
     end
-
     subject { described_class.receive }
     it { is_expected.to be_a Array }
     it { is_expected.to all be_a(Kiki::Mail) }

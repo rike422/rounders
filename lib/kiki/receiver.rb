@@ -24,12 +24,6 @@ module Kiki
     end
 
     class << self
-      def build
-        receiver = new
-        sub_receivers.push(receiver)
-        receiver
-      end
-
       def configure
         config = Config.new
         yield config
@@ -49,19 +43,14 @@ module Kiki
       end
 
       def reset
-        @receiver      = nil
-        @sub_receivers = nil
-        @receivers     = nil
+        @receiver  = nil
+        @receivers = nil
       end
 
       private
 
       def receivers
-        @receivers ||= [@receiver].concat(sub_receivers)
-      end
-
-      def sub_receivers
-        @sub_receivers ||= []
+        [@receiver]
       end
 
       def parser
