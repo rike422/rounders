@@ -27,7 +27,7 @@ describe Kiki::Matchers::Body do
     let(:arguments) { [/email/] }
     let(:message) { Mail.new(body: 'This is a body of the email') }
     it 'should return MatchData' do
-      expect(message.body).to receive(:match).with(arguments[0]).and_return message.body.match(arguments[0])
+      expect(message.body).to receive_message_chain(:to_s, :force_encoding, :match).with(arguments[0]).and_return message.body.match(arguments[0])
       expect(described_instance.match(message)).to_not be_nil
     end
     context 'when message.body is nil' do

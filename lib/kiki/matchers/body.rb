@@ -9,7 +9,7 @@ module Kiki
 
       def match(mail)
         return if mail.body.nil?
-        mail.body.match(pattern)
+        mail.body.to_s.force_encoding('UTF-8').match(pattern)
       end
     end
   end
