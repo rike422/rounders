@@ -13,6 +13,10 @@ module Kiki
           end
         end
 
+        def inherited(child_class)
+          Kiki.handlers << child_class
+        end
+
         def dispatch(rounder, mails)
           mails.map do |mail|
             dispatchers.each do |dispatcher|
@@ -29,14 +33,6 @@ module Kiki
         end
 
         private
-
-        def inherited(child_class)
-          handlers << child_class
-        end
-
-        def handlers
-          @handlers ||= []
-        end
 
         def dispatchers
           @dispatchers ||= []

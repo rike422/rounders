@@ -30,6 +30,16 @@ describe Kiki::Handlers::Handler do
     it { is_expected.to be_a described_class }
   end
 
+  describe '.inherited' do
+    let(:inherited_class) do
+      Class.new(Kiki::Handlers::Handler) do
+      end
+    end
+    it 'should add to Kiki.handlers' do
+      expect { inherited_class }.to change { Kiki.handlers.length }.by(+1)
+    end
+  end
+
   describe '.on' do
     let(:mails) do
       (1..3).map do |i|

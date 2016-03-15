@@ -13,6 +13,10 @@ module Kiki
 
     private
 
+    def handle(mails)
+      Kiki.handlers.map { |handler| handler.dispatch(self, mails) }
+    end
+
     def load_config
       Pathname.glob(File.join(Dir.pwd, 'config/initializers/*.rb')).each do |config|
         require_relative config
@@ -28,10 +32,6 @@ module Kiki
 
     def round
       handle receive_mail
-    end
-
-    def handle(mails)
-      Handler.handlers.map { |handler| handler.dispatch(self, mails) }
     end
 
     def receive_mail

@@ -2,7 +2,6 @@ module Kiki
   module Matchers
     class NoImplementError < StandardError
     end
-
     class Matcher
       include Kiki::Plugins::Pluggable
       attr_reader :matchers
@@ -30,10 +29,6 @@ module Kiki
           raise Kiki::Matchers::NoImplementError
         rescue StandardError => e
           raise e
-        end
-
-        def child_classes
-          @child_classes ||= []
         end
       end
     end

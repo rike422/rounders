@@ -4,6 +4,11 @@ module Kiki
   # Your code goes here...
   CONFIG_DIR_PATH = File.join(Dir.pwd, 'config').freeze
   PLUGIN_DIR_PATH = File.join(Dir.pwd, 'plugins').freeze
+  class << self
+    def handlers
+      @handlers ||= []
+    end
+  end
 end
 
 require 'active_support/core_ext/object'
