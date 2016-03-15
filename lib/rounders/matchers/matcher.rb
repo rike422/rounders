@@ -1,9 +1,9 @@
-module Kiki
+module Rounders
   module Matchers
     class NoImplementError < StandardError
     end
     class Matcher
-      include Kiki::Plugins::Pluggable
+      include Rounders::Plugins::Pluggable
       attr_reader :matchers
 
       def initialize(matchers)
@@ -26,7 +26,7 @@ module Kiki
           end
           new(matchers)
         rescue NameError
-          raise Kiki::Matchers::NoImplementError
+          raise Rounders::Matchers::NoImplementError
         rescue StandardError => e
           raise e
         end

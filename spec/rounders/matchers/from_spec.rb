@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Kiki::Matchers::From do
-  let(:described_class) { Kiki::Matchers::From }
+describe Rounders::Matchers::From do
+  let(:described_class) { Rounders::Matchers::From }
   let(:described_instance) { described_class.new(*arguments) }
   let(:arguments) { [/@github.com/] }
   let(:from_addresses) do
@@ -14,7 +14,7 @@ describe Kiki::Matchers::From do
 
   describe '#inherited' do
     subject { described_class.superclass }
-    it { is_expected.to eq Kiki::Matchers::Matcher }
+    it { is_expected.to eq Rounders::Matchers::Matcher }
   end
 
   describe '.new' do
@@ -62,7 +62,7 @@ describe Kiki::Matchers::From do
     end
     context 'when Message.from is nil' do
       let(:message) do
-        Kiki::Mail.new(
+        Rounders::Mail.new(
           Mail.new
         )
       end

@@ -1,20 +1,20 @@
-require 'kiki/commands/sub_commands/generate'
+require 'rounders/commands/sub_commands/generate'
 
-module Kiki
+module Rounders
   class Commander
     class << self
       def start(argv = ARGV)
         if app?
-          require 'kiki/commands/local_command'
+          require 'rounders/commands/local_command'
           Commands::LocalCommand.start(argv)
         else
-          require 'kiki/commands/global_command'
+          require 'rounders/commands/global_command'
           Commands::GlobalCommand.start(argv)
         end
       end
 
       def app?
-        Pathname(Kiki::CONFIG_DIR_PATH).exist?
+        Pathname(Rounders::CONFIG_DIR_PATH).exist?
       end
     end
   end

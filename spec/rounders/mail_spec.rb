@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Kiki::Mail do
-  let(:described_class) { Kiki::Mail }
+describe Rounders::Mail do
+  let(:described_class) { Rounders::Mail }
   let(:described_instance) { described_class.new(*arguments) }
   let(:mail) { Mail::Message.new }
   let(:arguments) { [mail] }

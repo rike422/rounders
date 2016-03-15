@@ -1,4 +1,4 @@
-Kiki::Receiver.configure do |config|
+Rounders::Receiver.configure do |config|
   # please show more option
   #
   config.protocol = :imap

@@ -1,4 +1,4 @@
-module Kiki
+module Rounders
   class Rounder
     DEFAULT_INTERVAL = 10
 
@@ -14,7 +14,7 @@ module Kiki
     private
 
     def handle(mails)
-      Kiki.handlers.map { |handler| handler.dispatch(self, mails) }
+      Rounders.handlers.map { |handler| handler.dispatch(self, mails) }
     end
 
     def load_config
@@ -35,12 +35,12 @@ module Kiki
     end
 
     def receive_mail
-      Kiki::Receiver.receive
+      Rounders::Receiver.receive
     end
 
     def setup
       load_config
-      Kiki::Plugins::PluginLoader.load_plugins
+      Rounders::Plugins::PluginLoader.load_plugins
     end
 
     def interval

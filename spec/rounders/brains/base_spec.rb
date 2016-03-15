@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Kiki::Brains::Base do
-  let(:described_class) { Kiki::Brains::Base }
+describe Rounders::Brains::Base do
+  let(:described_class) { Rounders::Brains::Base }
   let(:described_instance) { described_class.new(*args) }
   let(:args) { [] }
 

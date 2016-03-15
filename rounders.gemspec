@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'kiki/version'
+require 'rounders/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'kiki'
-  spec.version       = Kiki::VERSION
+  spec.name          = 'rounders'
+  spec.version       = Rounders::VERSION
   spec.authors       = ['akira.takahashi']
   spec.email         = ['rike422@gmail.com']
 
-  spec.summary       = 'Kiki is Mail processing framework is similar Bot, inspired by ruboty and mailman'
-  spec.homepage      = 'https://github.com/rike422/kiki'
+  spec.summary       = 'Rounders is Mail processing framework is similar Bot, inspired by ruboty and mailman'
+  spec.homepage      = 'https://github.com/rike422/rounders'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }

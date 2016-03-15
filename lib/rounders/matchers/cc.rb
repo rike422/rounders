@@ -1,6 +1,6 @@
-module Kiki
+module Rounders
   module Matchers
-    class CC < Kiki::Matchers::Matcher
+    class CC < Rounders::Matchers::Matcher
       attr_reader :pattern
 
       def initialize(pattern)

@@ -1,5 +1,5 @@
 require 'pathname'
-module Kiki
+module Rounders
   module Plugins
     module Pluggable
       class << self
@@ -15,7 +15,7 @@ module Kiki
         end
 
         def load_path
-          @load_path ||= File.join(Kiki::PLUGIN_DIR_PATH, directory_name)
+          @load_path ||= File.join(Rounders::PLUGIN_DIR_PATH, directory_name)
         end
 
         def load_plugins

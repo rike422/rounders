@@ -1,4 +1,4 @@
-module Kiki
+module Rounders
   class Mail
     extend Forwardable
     def_delegators :@mail,

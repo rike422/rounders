@@ -1,6 +1,6 @@
-module Kiki
+module Rounders
   module Handlers
-    class {{ class_name }} < Kiki::Handlers::Handler
+    class {{ class_name }} < Rounders::Handlers::Handler
     {{#handlers}}
       on({ body: 'example' }, :{{.}})
     {{/handlers}}

@@ -1,4 +1,4 @@
-module Kiki
+module Rounders
   module Generators
     class Handler < Generator
       attr_accessor :handlers

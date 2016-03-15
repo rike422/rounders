@@ -1,4 +1,4 @@
-module Kiki
+module Rounders
   module Generators
     class App
       attr_reader :name

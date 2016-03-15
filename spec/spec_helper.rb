@@ -1,5 +1,5 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
-require 'kiki'
+require 'rounders'
 require 'simplecov'
 SimpleCov.start
 

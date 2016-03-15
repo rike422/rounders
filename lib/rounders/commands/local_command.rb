@@ -1,14 +1,14 @@
-module Kiki
+module Rounders
   module Commands
     class LocalCommand < Thor
       class_option :help, type: :boolean, aliases: '-h', desc: 'Help message.'
-      package_name 'kiki'
+      package_name 'rounders'
 
-      desc 'start', 'Start the Kiki'
+      desc 'start', 'Start the Rounders'
       method_option aliases: '-s'
       option :dotenv
       def start
-        rounder = Kiki::Rounder.new
+        rounder = Rounders::Rounder.new
         rounder.dotenv if options[:dotenv]
         rounder.start
       end

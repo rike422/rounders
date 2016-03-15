@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Kiki::Generators::Handler do
-  let(:described_class) { Kiki::Generators::Handler }
+describe Rounders::Generators::Handler do
+  let(:described_class) { Rounders::Generators::Handler }
   let(:described_instance) { described_class.new(arguments) }
   let(:arguments) do
     { name: name }

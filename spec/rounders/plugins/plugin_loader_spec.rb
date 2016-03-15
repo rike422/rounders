@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Kiki::Plugins::PluginLoader do
-  let(:described_class) { Kiki::Plugins::PluginLoader }
+describe Rounders::Plugins::PluginLoader do
+  let(:described_class) { Rounders::Plugins::PluginLoader }
   let(:described_instance) { described_class.new(*arguments) }
   let(:arguments) { [] }
   let!(:mock_class) do

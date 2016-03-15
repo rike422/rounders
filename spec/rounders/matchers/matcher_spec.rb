@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Kiki::Matchers::Matcher do
-  let(:described_class) { Kiki::Matchers::Matcher }
+describe Rounders::Matchers::Matcher do
+  let(:described_class) { Rounders::Matchers::Matcher }
   let(:described_instance) { described_class.build(arguments) }
   let(:arguments) do
     {
@@ -20,22 +20,22 @@ describe Kiki::Matchers::Matcher do
       described_class.build(arguments)
     end
     it 'should return Matcher class instance' do
-      expect(matcher).to be_a(Kiki::Matchers::Matcher)
+      expect(matcher).to be_a(Rounders::Matchers::Matcher)
     end
     it 'should be able to find and create a matcher instance' do
-      expect(matcher.matchers).to include(a_kind_of(Kiki::Matchers::To))
-      expect(matcher.matchers).to include(a_kind_of(Kiki::Matchers::Subject))
+      expect(matcher.matchers).to include(a_kind_of(Rounders::Matchers::To))
+      expect(matcher.matchers).to include(a_kind_of(Rounders::Matchers::Subject))
     end
     context 'When matcher is not implemented' do
       it 'should raise MatcherNoImplementError' do
-        expect { described_class.build(but_matcher: 'but!') }.to raise_error(Kiki::Matchers::NoImplementError)
+        expect { described_class.build(but_matcher: 'but!') }.to raise_error(Rounders::Matchers::NoImplementError)
       end
     end
   end
 
   describe '#match' do
     let(:message) do
-      Kiki::Mail.new(
+      Rounders::Mail.new(
         Mail.new(
           from: 'rike422@github.com',
           subject: 'subject1'

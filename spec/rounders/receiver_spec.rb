@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-describe Kiki::Receiver do
-  let(:described_class) { Kiki::Receiver }
+describe Rounders::Receiver do
+  let(:described_class) { Rounders::Receiver }
   let(:described_instance) { described_class.new(*arguments) }
   let(:arguments) { [] }
-  let(:config) { Kiki::Receiver::Config.new }
+  let(:config) { Rounders::Receiver::Config.new }
   let(:messages) do
     (1..10).map do |i|
       ::Mail.new(
@@ -19,9 +19,9 @@ describe Kiki::Receiver do
     described_class.reset
   end
   describe '.configure' do
-    it 'should yield with Kiki::Receiver::Config' do
-      expect(described_class).to receive(:create_client).with(be_a(Kiki::Receiver::Config))
-      expect { |b| described_class.configure(&b) }.to yield_with_args(Kiki::Receiver::Config)
+    it 'should yield with Rounders::Receiver::Config' do
+      expect(described_class).to receive(:create_client).with(be_a(Rounders::Receiver::Config))
+      expect { |b| described_class.configure(&b) }.to yield_with_args(Rounders::Receiver::Config)
     end
   end
 
@@ -61,25 +61,25 @@ describe Kiki::Receiver do
     let(:receiver) do
       retriever = ::Mail::POP3.new({})
       allow(retriever).to receive(:find).and_return messages
-      Kiki::Receiver.new(client: retriever)
+      Rounders::Receiver.new(client: retriever)
     end
     before(:each) do
       described_class.instance_variable_set(:@receiver, receiver)
     end
     subject { described_class.receive }
     it { is_expected.to be_a Array }
-    it { is_expected.to all be_a(Kiki::Mail) }
-    it 'should return Kiki::Mail, that sort_by date asc' do
+    it { is_expected.to all be_a(Rounders::Mail) }
+    it 'should return Rounders::Mail, that sort_by date asc' do
       expect(described_class.receive.map(&:date)).to eq messages.reverse.map(&:date)
       described_class.receive.map(&:date)
     end
   end
 
   describe '#configure' do
-    it 'should yield with Kiki::Receiver::Config' do
+    it 'should yield with Rounders::Receiver::Config' do
       spy = instance_spy('client')
-      expect(described_class).to receive(:create_client).with(be_a(Kiki::Receiver::Config)).and_return spy
-      expect { |b| described_instance.configure(&b) }.to yield_with_args(Kiki::Receiver::Config)
+      expect(described_class).to receive(:create_client).with(be_a(Rounders::Receiver::Config)).and_return spy
+      expect { |b| described_instance.configure(&b) }.to yield_with_args(Rounders::Receiver::Config)
       expect(described_instance.client).to eq spy
     end
   end
@@ -102,7 +102,7 @@ describe Kiki::Receiver do
     end
     subject { described_instance.receive }
     it { is_expected.to be_a Array }
-    it { is_expected.to all be_a(Kiki::Mail) }
+    it { is_expected.to all be_a(Rounders::Mail) }
     it 'should find unread email' do
       expect(client).to receive(:find).with(
         keys: %w(NOT SEEN),

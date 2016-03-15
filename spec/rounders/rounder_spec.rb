@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Kiki::Rounder do
-  let(:described_class) { Kiki::Rounder }
+describe Rounders::Rounder do
+  let(:described_class) { Rounders::Rounder }
   let(:described_instance) { described_class.new(*arguments) }
   let(:arguments) { [] }
 

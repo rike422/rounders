@@ -1,7 +1,7 @@
-module Kiki
+module Rounders
   module Handlers
     class Handler
-      include Kiki::Plugins::Pluggable
+      include Rounders::Plugins::Pluggable
       attr_reader :matches, :rouder
       class << self
         class Dispatcher
@@ -14,7 +14,7 @@ module Kiki
         end
 
         def inherited(child_class)
-          Kiki.handlers << child_class
+          Rounders.handlers << child_class
         end
 
         def dispatch(rounder, mails)
@@ -28,7 +28,7 @@ module Kiki
         end
 
         def on(option, method_name)
-          matcher = Kiki::Matchers::Matcher.build(option)
+          matcher = Rounders::Matchers::Matcher.build(option)
           dispatchers << Dispatcher.new(method_name, matcher)
         end
 

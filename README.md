@@ -1,4 +1,4 @@
-# Kiki [![Circle CI](https://circleci.com/gh/rike422/kiki.svg?style=svg)](https://circleci.com/gh/rike422/kiki)  [![Code Climate](https://codeclimate.com/github/rike422/kiki/badges/gpa.svg)](https://codeclimate.com/github/rike422/kiki)
+# Rounders [![Circle CI](https://circleci.com/gh/rike422/rounders.svg?style=svg)](https://circleci.com/gh/rike422/rounders)  [![Code Climate](https://codeclimate.com/github/rike422/rounders/badges/gpa.svg)](https://codeclimate.com/github/rike422/rounders)
 
 The pluggalbe mail processing framework
 
@@ -7,7 +7,7 @@ The pluggalbe mail processing framework
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'kiki'
+gem 'rounders'
 ```
 
 And then execute:
@@ -16,33 +16,33 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install kiki
+    $ gem install rounders
 
 ## Usage
 
 ### create bot
 
-create a new bot by running the kiki new command after installing kiki.
+create a new bot by running the rounders new command after installing rounders.
 
 ```
-kiki new [name]
+rounders new [name]
 ```
 
 ### generator
 
 #### handler
 
-The `kiki generate handler` command create template of handler into ./plugins/handlers/
+The `rounders generate handler` command create template of handler into ./plugins/handlers/
 
 ```
-kiki generate handler [name] [method1, method2...] `
+rounders generate handler [name] [method1, method2...] `
 ```
 ##### example
 
 ```ruby
-module Kiki
+module Rounders
   module Handlers
-    class MyHandler < Kiki::Handlers::Handler
+    class MyHandler < Rounders::Handlers::Handler
       # mail.body is include 'exmpale'
       on({ body: 'example' }, :callback_method1)
       # body include 'exmpale' AND subject include 'my_subject'
@@ -80,7 +80,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/kiki. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rounders. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License

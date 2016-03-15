@@ -1,4 +1,4 @@
-module Kiki
+module Rounders
   class Receiver
     class Config
       attr_accessor :protocol
@@ -24,7 +24,7 @@ module Kiki
     def receive
       @client.
         find(find_options).
-        map { |message| Kiki::Mail.new(message) }
+        map { |message| Rounders::Mail.new(message) }
     end
 
     class << self

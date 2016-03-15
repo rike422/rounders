@@ -1,4 +1,4 @@
-module Kiki
+module Rounders
   module Plugins
     class PluginLoader
       class << self

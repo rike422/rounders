@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Kiki::Handlers::Handler do
-  let(:described_class) { Kiki::Handlers::Handler }
+describe Rounders::Handlers::Handler do
+  let(:described_class) { Rounders::Handlers::Handler }
   let(:described_instance) { described_class.new(*arguments) }
-  let(:rounder) { Kiki::Rounder.new }
+  let(:rounder) { Rounders::Rounder.new }
   let(:arguments) { [rounder, MatchData] }
   let(:mock_handler_class) do
-    Class.new(Kiki::Handlers::Handler) do
+    Class.new(Rounders::Handlers::Handler) do
       on({ to: 'to_someone1@somewhere.com' }, :to_callback)
       on({ from: 'from_someone_unknown@somewhere.com' }, :from_callback)
       on({ body: 'body_message2' }, :body_callback)
@@ -32,18 +32,18 @@ describe Kiki::Handlers::Handler do
 
   describe '.inherited' do
     let(:inherited_class) do
-      Class.new(Kiki::Handlers::Handler) do
+      Class.new(Rounders::Handlers::Handler) do
       end
     end
-    it 'should add to Kiki.handlers' do
-      expect { inherited_class }.to change { Kiki.handlers.length }.by(+1)
+    it 'should add to Rounders.handlers' do
+      expect { inherited_class }.to change { Rounders.handlers.length }.by(+1)
     end
   end
 
   describe '.on' do
     let(:mails) do
       (1..3).map do |i|
-        Kiki::Mail.new(
+        Rounders::Mail.new(
           ::Mail.new(
             to:   "to_someone#{i}@somewhere.com",
             from: "from_someone#{i}@somewhere.com",

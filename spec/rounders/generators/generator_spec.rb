@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Kiki::Generators::Generator do
-  let(:described_class) { Kiki::Generators::Generator }
+describe Rounders::Generators::Generator do
+  let(:described_class) { Rounders::Generators::Generator }
   let(:described_instance) { described_class.new(*arguments) }
   let(:name) { 'test_generator' }
   let(:arguments) { [name] }
   let(:generator_class) do
     module Mock
-      class Worker < Kiki::Generators::Generator; end
+      class Worker < Rounders::Generators::Generator; end
     end
     Mock::Worker
   end

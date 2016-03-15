@@ -1,8 +1,8 @@
 require 'mustache'
-module Kiki
+module Rounders
   module Generators
     class Generator < Mustache
-      include Kiki::Plugins::Pluggable
+      include Rounders::Plugins::Pluggable
       attr_reader :name
 
       class << self
@@ -41,7 +41,7 @@ module Kiki
       end
 
       def output_path
-        Pathname("#{Kiki::PLUGIN_DIR_PATH}/#{self.class.directory_name}")
+        Pathname("#{Rounders::PLUGIN_DIR_PATH}/#{self.class.directory_name}")
       end
     end
   end

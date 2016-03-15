@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Kiki do
+describe Rounders do
   it 'has a version number' do
-    expect(Kiki::VERSION).not_to be nil
+    expect(Rounders::VERSION).not_to be nil
   end
 end
