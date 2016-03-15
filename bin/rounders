@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'bundler/setup'
-require 'kiki'
+require 'rounders'
 
-Kiki::Commander.start(ARGV)
+Rounders::Commander.start(ARGV)
