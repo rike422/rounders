@@ -27,8 +27,8 @@ describe Kiki::Receiver do
 
   describe '.create_client' do
     before(:each) do
-      config.protocol = :pop3
-      config.option   = {
+      config.protocol            = :pop3
+      config.mail_server_settings = {
         address:        'localhost',
         port:           110,
         user_name:      'rike422',
@@ -43,7 +43,7 @@ describe Kiki::Receiver do
       expect(described_class.create_client(config)).to be_a described_class
     end
     it 'should create Mail::Retriever with' do
-      expect(retriever).to receive(:new).with(config.option)
+      expect(retriever).to receive(:new).with(config.mail_server_settings)
       allow_any_instance_of(Mail::Configuration).to receive(:lookup_retriever_method).and_return(retriever)
       described_class.create_client(config)
     end

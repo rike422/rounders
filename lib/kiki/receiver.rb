@@ -2,7 +2,7 @@ module Kiki
   class Receiver
     class Config
       attr_accessor :protocol
-      attr_accessor :option
+      attr_accessor :mail_server_settings
     end
 
     attr_reader :client
@@ -32,7 +32,7 @@ module Kiki
 
       def create_client(config)
         retriever = parser.lookup_retriever_method(config.protocol)
-        new(client: retriever.new(config.option))
+        new(client: retriever.new(config.mail_server_settings))
       end
 
       def receive
