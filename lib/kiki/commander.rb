@@ -4,7 +4,7 @@ module Kiki
   class Commander
     class << self
       def start(argv = ARGV)
-        if app_path?
+        if app?
           require 'kiki/commands/local_command'
           Commands::LocalCommand.start(argv)
         else
@@ -13,8 +13,8 @@ module Kiki
         end
       end
 
-      def app_path?
-        Pathname('./config/initializers').exist?
+      def app?
+        Pathname(Kiki::CONFIG_DIR_PATH).exist?
       end
     end
   end

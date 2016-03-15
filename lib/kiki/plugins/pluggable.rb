@@ -2,7 +2,6 @@ require 'pathname'
 module Kiki
   module Plugins
     module Pluggable
-      PLUGIN_BASE_DIR_PATH = 'plugins'.freeze
       class << self
         def included(klass)
           klass.extend ClassMethods
@@ -16,7 +15,7 @@ module Kiki
         end
 
         def load_path
-          @load_path ||= "#{PLUGIN_BASE_DIR_PATH}/#{directory_name}"
+          @load_path ||= File.join(Kiki::PLUGIN_DIR_PATH, directory_name)
         end
 
         def load_plugins

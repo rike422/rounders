@@ -29,7 +29,7 @@ describe Kiki::Plugins::Pluggable do
     end
     it 'should load plugins of include class' do
       expect(Pathname).to receive(:glob).
-        with("#{Kiki::Plugins::Pluggable::PLUGIN_BASE_DIR_PATH}/workers/*.rb").
+        with("#{Kiki::PLUGIN_DIR_PATH}/workers/*.rb").
         and_return mock_glob
       puluggable_class.load_plugins
     end

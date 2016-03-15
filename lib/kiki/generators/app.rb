@@ -6,17 +6,17 @@ module Kiki
         @name = name
       end
 
-      def app_path
-        Pathname("./#{name}")
+      def target
+        @target ||= Pathname(File.join(Dir.pwd, name))
       end
 
       def generate!
-        if app_path.exist?
+        if target.exist?
           puts "#{name} already exists"
           exit
         end
-        app_path.mkpath
-        FileUtils.copy_entry(template_path, app_path)
+        target.mkpath
+        FileUtils.copy_entry(template_path, target)
         puts "create #{name}"
       end
 

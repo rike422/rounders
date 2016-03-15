@@ -14,8 +14,8 @@ module Kiki
     private
 
     def load_config
-      Pathname.glob('./config/initializers/*.rb').each do |config|
-        require config
+      Pathname.glob(File.join(Dir.pwd, 'config/initializers/*.rb')).each do |config|
+        require_relative config
       end
     end
 

@@ -7,7 +7,7 @@ module Kiki
 
       class << self
         def inherited(klass)
-          klass.template_path      = 'templates'
+          klass.template_path      = Pathname('../../../../templates/generators').expand_path(__FILE__).to_s.freeze
           klass.template_name      = klass.name.demodulize.downcase
           klass.template_extension = 'mustache.rb'
         end
@@ -41,7 +41,7 @@ module Kiki
       end
 
       def output_path
-        Pathname("#{Kiki::Plugins::Pluggable::PLUGIN_BASE_DIR_PATH}/#{self.class.directory_name}")
+        Pathname("#{Kiki::PLUGIN_DIR_PATH}/#{self.class.directory_name}")
       end
     end
   end
