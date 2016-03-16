@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ['akira.takahashi']
   spec.email         = ['rike422@gmail.com']
 
-  spec.summary       = 'Rounders is Mail processing framework is similar Bot, inspired by ruboty and mailman'
+  spec.summary       = 'bot-ish pluggable incoming mail processing framework'
   spec.homepage      = 'https://github.com/rike422/rounders'
   spec.license       = 'MIT'
 
