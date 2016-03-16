@@ -8,6 +8,10 @@ module Rounders
     def handlers
       @handlers ||= []
     end
+
+    def matchers
+      @matchers ||= {}
+    end
   end
 end
 
