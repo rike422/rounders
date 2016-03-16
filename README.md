@@ -52,11 +52,11 @@ module Rounders
 		  :callback_method2)
 ​
       def method1(mail)
-        // any process
+       	# any process
       end
 ​
       def method2(mail)
-         // any process
+        # any process
       end
     end
   end
