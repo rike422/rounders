@@ -17,3 +17,6 @@ if ENV['CIRCLE_ARTIFACTS']
 end
 
 require 'rounders'
+require 'rounders/commands/sub_commands/generate'
+require 'rounders/commands/local_command'
+require 'rounders/commands/global_command'
