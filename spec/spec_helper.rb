@@ -1,4 +1,5 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'support/custom_matcher/delegate_matcher'
 if ENV['CIRCLE_ARTIFACTS']
   require 'simplecov'
   require 'coveralls'

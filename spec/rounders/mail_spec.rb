@@ -6,60 +6,53 @@ describe Rounders::Mail do
   let(:mail) { Mail::Message.new }
   let(:arguments) { [mail] }
 
-  describe '#body' do
-    let(:body) { 'body message' }
-    it 'should be forwadable @massage.body' do
-      allow(mail).to receive(:body).and_return(body)
-      expect(described_instance.body).to eql body
-    end
-  end
-
-  describe '#cc' do
-    let(:cc) { 'user1@users.com' }
-    it 'should be forwadable @massage.cc' do
-      allow(mail).to receive(:cc).and_return(cc)
-      expect(described_instance.cc).to eql cc
-    end
-  end
-
-  describe '#envelope_from' do
-    let(:envelope_from) { 'user1@users.com' }
-    it 'should be forwadable @massage.cc' do
-      allow(mail).to receive(:envelope_from).and_return(envelope_from)
-      expect(described_instance.envelope_from).to eql envelope_from
-    end
-  end
-
-  describe '#date' do
-    let(:date) { Date.today }
-    it 'should be forwadable @massage.date' do
-      allow(mail).to receive(:date).and_return(date)
-      expect(described_instance.date).to eql date
-    end
-  end
-
-  describe '#from' do
-    let(:from) { 'user1@users.com' }
-    it 'should be forwadable @massage.from' do
-      allow(mail).to receive(:from).and_return(from)
-      expect(described_instance.from).to eql from
-    end
-  end
-
-  describe '#sender' do
-    let(:sender) { 'akira.takahashi' }
-    it 'should be forwadable @massage.sender' do
-      allow(mail).to receive(:sender).and_return(sender)
-      expect(described_instance.sender).to eql sender
-    end
-  end
-
-  describe '#subject' do
-    let(:subject) { 'subject1' }
-    it 'should be forwadable @massage.subject' do
-      allow(mail).to receive(:subject).and_return(subject)
-      expect(described_instance.subject).to eql subject
-    end
+  describe Rounders::Mail do
+    subject { described_class.new(*arguments) }
+    it { is_expected.to delegate(:all_parts).to(:@mail) }
+    it { is_expected.to delegate(:attachment).to(:@mail) }
+    it { is_expected.to delegate(:attachment?).to(:@mail) }
+    it { is_expected.to delegate(:attachments).to(:@mail) }
+    it { is_expected.to delegate(:bcc).to(:@mail) }
+    it { is_expected.to delegate(:body).to(:@mail) }
+    it { is_expected.to delegate(:body_encoding).to(:@mail) }
+    it { is_expected.to delegate(:cc).to(:@mail) }
+    it { is_expected.to delegate(:charset).to(:@mail) }
+    it { is_expected.to delegate(:comments).to(:@mail) }
+    it { is_expected.to delegate(:content_description).to(:@mail) }
+    it { is_expected.to delegate(:content_id).to(:@mail) }
+    it { is_expected.to delegate(:content_location).to(:@mail) }
+    it { is_expected.to delegate(:content_transfer_encoding).to(:@mail) }
+    it { is_expected.to delegate(:content_type).to(:@mail) }
+    it { is_expected.to delegate(:date).to(:@mail) }
+    it { is_expected.to delegate(:decode_body).to(:@mail) }
+    it { is_expected.to delegate(:decoded).to(:@mail) }
+    it { is_expected.to delegate(:default).to(:@mail) }
+    it { is_expected.to delegate(:encoded).to(:@mail) }
+    it { is_expected.to delegate(:envelope_date).to(:@mail) }
+    it { is_expected.to delegate(:envelope_from).to(:@mail) }
+    it { is_expected.to delegate(:filename).to(:@mail) }
+    it { is_expected.to delegate(:from).to(:@mail) }
+    it { is_expected.to delegate(:has_attachments?).to(:@mail) }
+    it { is_expected.to delegate(:header).to(:@mail) }
+    it { is_expected.to delegate(:headers).to(:@mail) }
+    it { is_expected.to delegate(:html_part).to(:@mail) }
+    it { is_expected.to delegate(:in_reply_to).to(:@mail) }
+    it { is_expected.to delegate(:keywords).to(:@mail) }
+    it { is_expected.to delegate(:main_type).to(:@mail) }
+    it { is_expected.to delegate(:message_content_type).to(:@mail) }
+    it { is_expected.to delegate(:message_id).to(:@mail) }
+    it { is_expected.to delegate(:mime_parameters).to(:@mail) }
+    it { is_expected.to delegate(:mime_type).to(:@mail) }
+    it { is_expected.to delegate(:mime_version).to(:@mail) }
+    it { is_expected.to delegate(:multipart_report?).to(:@mail) }
+    it { is_expected.to delegate(:part).to(:@mail) }
+    it { is_expected.to delegate(:parts).to(:@mail) }
+    it { is_expected.to delegate(:sender).to(:@mail) }
+    it { is_expected.to delegate(:sub_type).to(:@mail) }
+    it { is_expected.to delegate(:subject).to(:@mail) }
+    it { is_expected.to delegate(:text?).to(:@mail) }
+    it { is_expected.to delegate(:text_part).to(:@mail) }
+    it { is_expected.to delegate(:to).to(:@mail) }
   end
 
   describe '#forward' do
