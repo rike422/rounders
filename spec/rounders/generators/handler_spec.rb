@@ -15,6 +15,9 @@ describe Rounders::Generators::Handler do
       let(:arguments) do
         { name: name, handlers: handlers }
       end
+      it 'should assignment @name' do
+        expect(described_instance.name).to eql name
+      end
       it 'should assignment @handlers' do
         expect(described_instance.handlers).to eql handlers
       end
