@@ -8,6 +8,10 @@ module Rounders
     def handlers
       @handlers ||= []
     end
+
+    def matchers
+      @matchers ||= {}
+    end
   end
 end
 
@@ -36,3 +40,4 @@ require 'rounders/brains/base'
 require 'rounders/generators/generator'
 require 'rounders/generators/app'
 require 'rounders/generators/handler'
+require 'rounders/generators/matcher'
