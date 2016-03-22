@@ -30,7 +30,7 @@ rounders new [name]
 
 ### generator
 
-#### handler
+#### Handlers
 
 The `rounders generate handler` command create template of handler into ./plugins/handlers/
 
@@ -45,18 +45,23 @@ module Rounders
     class MyHandler < Rounders::Handlers::Handler
       # mail.body is include 'exmpale'
       on({ body: 'example' }, :callback_method1)
-      # body include 'exmpale' AND subject include 'my_subject'
+      # body include 'exmpale' AND subject match the /programing (?<name>.+)$/
       on({ 
 		  body: 'example',
-		  subject: /my_subject/},
+		  subject: /programing (?<name>.+)$/},
 		  :callback_method2)
 ​
       def method1(mail)
+        matches[:body]
+        # => #<MatchData "example">
        	# any process
       end
 ​
       def method2(mail)
-        # any process
+        matches[:subject]
+      	# => <MatchData "programing ruby" name:"ruby">
+      	matches[:subject][:name]
+      	# => "ruby"
       end
     end
   end
@@ -64,9 +69,65 @@ end
 
 ```
 
-#### matcher 
+#### Matchers 
 
-coming soon...
+The `rounders generate matchers` command create template of matchers into ./plugins/matchers/
+
+```
+rounders generate matchers [name]`
+```
+
+your writen the matcher plugins that usable some handlers
+
+#### exmaple
+
+/plugins/matchers/css_selector.rb
+
+```ruby
+module Rounders
+  module Matchers
+    class CssSelector < Rounders::Matchers::Matcher
+      attr_reader :pattern
+
+      def initialize(pattern)
+        @pattern = pattern
+      end
+
+      def match(mail)
+        return if mail.html_part.blank?
+        html_part = Nokogiri::HTML(mail.html_part.body.to_s)
+        node = html_part.css(pattern)
+        node.present? ? node : nil
+      end
+    end
+  end
+end
+
+```
+
+/plugins/handlers/your_hander.rb
+```ruby
+module Rounders
+  module Handlers
+    class YourHandler < Rounders::Handlers::Handler
+      # css selector match 
+      on({ css_selector: 'body .header h2' }, method1)
+		  
+      def method1(mail)
+        matches[:css_selector]
+        # =>[#<Nokogiri::XML::Element:0x3fc6d77f6ccc name="h2" children=[#<Nokogiri::XML::Text:0x3fc6d77f6ad8 " head text ">]>]
+        matches[:css_selector].to_s
+        # => '<h2> head text </h2>'
+      end
+    end
+  end
+end
+
+```
+
+#### Gems
+
+- [rounders-css_selector_matcher](https://github.com/rike422/rounders-css_selector_matcher)
 
 #### reciever
 
