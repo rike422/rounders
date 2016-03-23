@@ -1,5 +1,6 @@
 module Rounders
   class Rounder
+    DEFAULT_ENV = 'development'.freeze
     DEFAULT_INTERVAL = 10
 
     def dotenv
@@ -12,6 +13,17 @@ module Rounders
     end
 
     private
+
+    def bundle
+      ::Bundler.require(:default, env)
+    rescue ::Bundler::GemfileNotFound => e
+      puts e
+      exit
+    end
+
+    def env
+      ENV['ROUNDERS_ENV'] || DEFAULT_ENV
+    end
 
     def handle(mails)
       Rounders.handlers.map { |handler| handler.dispatch(self, mails) }
@@ -39,6 +51,7 @@ module Rounders
     end
 
     def setup
+      bundle
       load_config
       Rounders::Plugins::PluginLoader.load_plugins
     end
