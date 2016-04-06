@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activesupport'
   spec.add_dependency 'dotenv'
   spec.add_dependency 'mail', '~> 2.6.3'
+  spec.add_dependency 'mail-gpg'
   spec.add_dependency 'mustache'
   spec.add_dependency 'thor'
 end
