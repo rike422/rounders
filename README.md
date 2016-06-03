@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/rike422/rounders.png?label=ready&title=Ready)](https://waffle.io/rike422/rounders)
 # Rounders [![Build Status](https://travis-ci.org/rike422/rounders.svg?branch=master)](https://travis-ci.org/rike422/rounders)  [![Code Climate](https://codeclimate.com/github/rike422/rounders/badges/gpa.svg)](https://codeclimate.com/github/rike422/rounders) [![Coverage Status](https://coveralls.io/repos/github/rike422/rounders/badge.svg?branch=master)](https://coveralls.io/github/rike422/rounders?branch=master)
 
 The pluggalbe mail processing framework
