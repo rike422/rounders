@@ -38,7 +38,8 @@ module Rounders
         retriever = parser.lookup_retriever_method(config.protocol)
         new(
           client: retriever.new(config.mail_server_settings),
-          find_options: config.find_options)
+          find_options: config.find_options
+        )
       end
 
       def receive

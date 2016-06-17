@@ -54,8 +54,7 @@ describe Rounders::Matchers::Matcher do
     context 'when all matcher are match' do
       it 'return MatchData' do
         expect(described_instance.match(message)).to match(
-          from: a_collection_containing_exactly(
-            a_kind_of(MatchData)),
+          from: a_collection_containing_exactly(a_kind_of(MatchData)),
           subject: a_kind_of(MatchData)
         )
       end
