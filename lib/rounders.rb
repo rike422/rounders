@@ -15,9 +15,9 @@ module Rounders
   end
 end
 
-require 'active_support/core_ext/object'
-require 'active_support/inflector'
 require 'thor'
+require 'hanami/utils/blank'
+require 'hanami/utils/string'
 require 'forwardable'
 require 'mail'
 require 'dotenv'

@@ -14,8 +14,14 @@ module Rounders
         match_data = matchers.each_with_object({}) do |matcher, memo|
           memo[matcher.class.symbol] = matcher.match(message)
         end
-        return match_data if match_data.values.all?(&:present?)
+        return match_data if match_data.values.none? { |value| blank?(value) }
         nil
+      end
+
+      private
+
+      def blank?(value)
+        Hanami::Utils::Blank.blank?(value)
       end
 
       class << self
@@ -24,13 +30,13 @@ module Rounders
         end
 
         def symbol
-          name.demodulize.underscore.to_sym
+          Hanami::Utils::String.new(name.split('::').last).underscore.to_sym
         end
 
         def build(conditions)
           matchers = conditions.map do |key, pattern|
             matcher = Rounders.matchers[key]
-            raise Rounders::Matchers::NoImplementError if matcher.blank?
+            raise Rounders::Matchers::NoImplementError if matcher.nil?
             matcher.new(pattern)
           end
           new(matchers)

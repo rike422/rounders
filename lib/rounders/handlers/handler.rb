@@ -21,7 +21,7 @@ module Rounders
           mails.map do |mail|
             dispatchers.each do |dispatcher|
               matches = dispatcher.matcher.match(mail)
-              next if matches.blank?
+              next if matches.nil?
               new(rounder, matches).public_send(dispatcher.method_name, mail)
             end
           end

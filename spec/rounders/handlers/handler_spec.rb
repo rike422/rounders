@@ -11,16 +11,16 @@ describe Rounders::Handlers::Handler do
       on({ from: 'from_someone_unknown@somewhere.com' }, :from_callback)
       on({ body: 'body_message2' }, :body_callback)
 
-      def from_callback
-        true
+      def from_callback(mail)
+        mail
       end
 
-      def to_callback
-        true
+      def to_callback(mail)
+        mail
       end
 
-      def body_callback
-        true
+      def body_callback(mail)
+        mail
       end
     end
   end
