@@ -14,10 +14,6 @@ describe Rounders::Generators::Generator do
   let(:generator_instance) do
     generator_class.new(*arguments)
   end
-  describe '#class_name' do
-    subject { generator_instance.class_name }
-    it { is_expected.to eql 'TestGenerator' }
-  end
   describe '#output_path' do
     it 'should retrun directory path' do
       expect(generator_instance.send(:output_path)).to be_a Pathname

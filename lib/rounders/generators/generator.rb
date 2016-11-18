@@ -1,47 +1,49 @@
-require 'mustache'
 module Rounders
   module Generators
-    class Generator < Mustache
+    class Generator < Thor
       include Rounders::Plugins::Pluggable
-      attr_reader :name
+      include Thor::Actions
 
-      class << self
-        def inherited(klass)
-          klass.template_path      = Pathname('../../../../templates/generators').expand_path(__FILE__).to_s.freeze
-          klass.template_name      = klass.name.split('::').last.downcase
-          klass.template_extension = 'mustache.rb'
-        end
-      end
+      attr_reader :name
 
       def initialize(name)
         @name = name
-      end
-
-      def class_name
-        Hanami::Utils::String.new(name).classify
+        super()
       end
 
       def generate
-        mkpath
+        self.destination_root = self.class.source_root
+        opt = {
+        }
         file_path = output_path.join(file_name)
-        file_path.open('w+') do |file|
-          file.puts(render)
-        end
+        template(template_name, file_path.to_s, opt)
         puts "create #{file_path}"
       end
 
       private
 
-      def file_name
-        "#{name.downcase.underscore}.rb"
+      def class_name
+        Hanami::Utils::String.new(name).classify
       end
 
-      def mkpath
-        output_path.mkpath
+      def template_name
+        "#{self.class.name.split('::').last.downcase}.tt"
+      end
+
+      def file_name
+        "#{Hanami::Utils::String.new(name.downcase).underscore}.rb"
       end
 
       def output_path
         Pathname("#{Rounders::PLUGIN_DIR_PATH}/#{self.class.directory_name}")
+      end
+
+      class << self
+        def inherited(klass)
+          klass.define_singleton_method(:source_root) do
+            Pathname('../../../../templates/generators').expand_path(__FILE__).to_s.freeze
+          end
+        end
       end
     end
   end
