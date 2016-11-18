@@ -35,3 +35,8 @@ Style/DotPosition:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'rounders.gemspec'
+    - 'spec/**/*'

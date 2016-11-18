@@ -46,7 +46,7 @@ module Rounders
         receivers.
           map(&:receive).
           flatten.
-          sort { |a, b| a.date <=> b.date }
+          sort_by(&:date)
       end
 
       def reset
