@@ -6,12 +6,13 @@ describe Rounders::Receiver do
   let(:arguments) { [] }
   let(:config) { Rounders::Receiver::Config.new }
   let(:messages) do
+    day = Date.today
     (1..10).map do |i|
       ::Mail.new(
         to:      "someone#{i}@somewhere.com",
         body:    "body_#{i}",
         subject: "subject#{i}",
-        date:    i.days.ago
+        date:    day - i
       )
     end
   end

@@ -28,10 +28,10 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'guard-rspec'
   spec.add_development_dependency 'guard-rubocop', '~> 1.2.0'
   spec.add_development_dependency 'pry'
-  spec.add_dependency 'activesupport'
   spec.add_dependency 'dotenv'
   spec.add_dependency 'mail', '~> 2.6.4'
   spec.add_dependency 'mail-gpg'
+  spec.add_dependency 'hanami-utils'
   spec.add_dependency 'mustache'
   spec.add_dependency 'thor'
 end

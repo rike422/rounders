@@ -11,7 +11,7 @@ module Rounders
 
       module ClassMethods
         def directory_name
-          @directory_name ||= name.demodulize.downcase.pluralize
+          @directory_name ||= Hanami::Utils::String.new(name.split('::').last.downcase).pluralize
         end
 
         def load_path

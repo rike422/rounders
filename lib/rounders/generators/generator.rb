@@ -8,7 +8,7 @@ module Rounders
       class << self
         def inherited(klass)
           klass.template_path      = Pathname('../../../../templates/generators').expand_path(__FILE__).to_s.freeze
-          klass.template_name      = klass.name.demodulize.downcase
+          klass.template_name      = klass.name.split('::').last.downcase
           klass.template_extension = 'mustache.rb'
         end
       end
@@ -18,7 +18,7 @@ module Rounders
       end
 
       def class_name
-        name.classify
+        Hanami::Utils::String.new(name).classify
       end
 
       def generate
