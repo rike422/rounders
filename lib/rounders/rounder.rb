@@ -47,7 +47,7 @@ module Rounders
     end
 
     def receive_mail
-      Rounders::Receiver.receive
+      Rounders::Receivers::Receiver.receive
     end
 
     def setup

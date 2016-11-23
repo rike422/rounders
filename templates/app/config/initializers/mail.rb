@@ -1,8 +1,8 @@
-Rounders::Receiver.configure do |config|
+Rounders::Receivers::Mail.configure do |config|
   # please show more option
   #
   config.protocol = :imap
-  config.mail_server_settings = {
+  config.mail_server_setting = {
     address:    'imap.gmail.com',
     port:       993,
     user_name:  ENV['GMAIL_USER_NAME'],
