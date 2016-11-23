@@ -12,6 +12,11 @@ module Rounders
         def matcher(name)
           Rounders::Generators::Matcher.new(name: name).generate
         end
+
+        desc 'receiver <name>', 'Generate new receiver'
+        def receiver(name)
+          Rounders::Generators::Receiver.new(name: name).generate
+        end
       end
     end
   end
