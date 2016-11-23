@@ -35,7 +35,7 @@ module Rounders
       end
 
       def output_path
-        Pathname("#{Rounders::PLUGIN_DIR_PATH}/#{self.class.directory_name}")
+        Pathname("#{Rounders::APP_PATH}/#{self.class.directory_name}")
       end
 
       class << self

@@ -15,7 +15,7 @@ module Rounders
         end
 
         def load_path
-          @load_path ||= File.join(Rounders::PLUGIN_DIR_PATH, directory_name)
+          @load_path ||= File.join(Rounders::APP_PATH, directory_name)
         end
 
         def load_plugins

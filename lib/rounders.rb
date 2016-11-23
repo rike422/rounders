@@ -3,7 +3,7 @@ require 'rounders/version'
 module Rounders
   # Your code goes here...
   CONFIG_DIR_PATH = File.join(Dir.pwd, 'config').freeze
-  PLUGIN_DIR_PATH = File.join(Dir.pwd, 'plugins').freeze
+  APP_PATH = File.join(Dir.pwd, 'app').freeze
   class << self
     def handlers
       @_handlers ||= []
