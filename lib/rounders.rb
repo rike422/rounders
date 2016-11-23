@@ -6,11 +6,15 @@ module Rounders
   PLUGIN_DIR_PATH = File.join(Dir.pwd, 'plugins').freeze
   class << self
     def handlers
-      @handlers ||= []
+      @_handlers ||= []
     end
 
     def matchers
-      @matchers ||= {}
+      @_matchers ||= {}
+    end
+
+    def receivers
+      @_receivers ||= []
     end
   end
 end
@@ -34,7 +38,8 @@ require 'rounders/matchers/from'
 require 'rounders/matchers/to'
 require 'rounders/handlers/handler'
 require 'rounders/commander'
-require 'rounders/receiver'
+require 'rounders/receivers/receiver'
+require 'rounders/receivers/mail'
 require 'rounders/rounder'
 require 'rounders/brains/base'
 
