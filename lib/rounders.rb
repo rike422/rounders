@@ -18,6 +18,7 @@ end
 require 'thor'
 require 'hanami/utils/blank'
 require 'hanami/utils/string'
+require 'dry-configurable'
 require 'forwardable'
 require 'mail'
 require 'dotenv'
