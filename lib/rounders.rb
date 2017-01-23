@@ -20,6 +20,7 @@ module Rounders
 end
 
 require 'thor'
+require 'thor/group'
 require 'dry-configurable'
 require 'forwardable'
 require 'mail'
@@ -42,8 +43,9 @@ require 'rounders/receivers/mail'
 require 'rounders/rounder'
 require 'rounders/brains/base'
 
-require 'rounders/generators/generator'
-require 'rounders/generators/app'
-require 'rounders/generators/handler'
-require 'rounders/generators/matcher'
-require 'rounders/generators/receiver'
+require 'rounders/generators/base'
+require 'rounders/generators/app/app_generator'
+require 'rounders/generators/plugin/plugin_generator'
+require 'rounders/generators/handler/handler_generator'
+require 'rounders/generators/matcher/matcher_generator'
+require 'rounders/generators/receiver/receiver_generator'

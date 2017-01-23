@@ -1,0 +1,6 @@
+module Rounders
+  module <%= namespaced_name %>
+  end
+end
+
+require 'rounders/<%= underscored_name %>/version'

@@ -1,0 +1,5 @@
+module Rounders
+  module <%= namespaced_name %>
+    VERSION = '0.1.0'
+  end
+end
