@@ -19,8 +19,6 @@ module Rounders
         nil
       end
 
-      private
-
       class << self
         def inherited(klass)
           Rounders.matchers[klass.symbol] = klass

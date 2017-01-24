@@ -6,16 +6,14 @@ describe Rounders::Plugins::PluginLoader do
   let(:arguments) { [] }
   let!(:mock_class) do
     class MockClass
-      def self.load_plugins
-      end
+      def self.load_plugins; end
     end
     MockClass
   end
 
   let!(:mock_class2) do
     class MockClass2
-      def self.load_plugins
-      end
+      def self.load_plugins; end
     end
     MockClass2
   end
