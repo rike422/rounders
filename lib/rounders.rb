@@ -20,13 +20,12 @@ module Rounders
 end
 
 require 'thor'
-require 'hanami/utils/blank'
-require 'hanami/utils/string'
 require 'dry-configurable'
 require 'forwardable'
 require 'mail'
 require 'dotenv'
 
+require 'rounders/util'
 require 'rounders/mail'
 require 'rounders/plugins/plugin_loader'
 require 'rounders/plugins/pluggable'

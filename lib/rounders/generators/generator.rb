@@ -23,7 +23,7 @@ module Rounders
       private
 
       def class_name
-        Hanami::Utils::String.new(name).classify
+        Util.infrect(name).classify
       end
 
       def template_name
@@ -31,7 +31,7 @@ module Rounders
       end
 
       def file_name
-        "#{Hanami::Utils::String.new(name.downcase).underscore}.rb"
+        "#{Util.infrect(name.downcase).underscore}.rb"
       end
 
       def output_path

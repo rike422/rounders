@@ -4,6 +4,7 @@ module Rounders
     end
     class Matcher
       include Rounders::Plugins::Pluggable
+
       attr_reader :matchers
 
       def initialize(matchers)
@@ -14,15 +15,11 @@ module Rounders
         match_data = matchers.each_with_object({}) do |matcher, memo|
           memo[matcher.class.symbol] = matcher.match(message)
         end
-        return match_data if match_data.values.none? { |value| blank?(value) }
+        return match_data if match_data.values.none? { |value| Util.blank?(value) }
         nil
       end
 
       private
-
-      def blank?(value)
-        Hanami::Utils::Blank.blank?(value)
-      end
 
       class << self
         def inherited(klass)
@@ -30,7 +27,7 @@ module Rounders
         end
 
         def symbol
-          Hanami::Utils::String.new(name.split('::').last).underscore.to_sym
+          Util.infrect(name.split('::').last).underscore.to_sym
         end
 
         def build(conditions)
