@@ -1,9 +1,8 @@
 # Rounders [![Build Status](https://travis-ci.org/rike422/rounders.svg?branch=master)](https://travis-ci.org/rike422/rounders)  [![Code Climate](https://codeclimate.com/github/rike422/rounders/badges/gpa.svg)](https://codeclimate.com/github/rike422/rounders) [![Coverage Status](https://coveralls.io/repos/github/rike422/rounders/badge.svg?branch=master)](https://coveralls.io/github/rike422/rounders?branch=master)
 
-[日本語README](https://github.com/rike422/rounders/README.ja.md)
+Roundersは拡張性を重視した、メール処理フレームワークです。
+RubotyなどのBotを参考に作られました。
 
-Rounders is a mail handling framework that emphasizes scalability.
- It was made with reference to Bot such as Ruboty.
 
 ## Installation
 
@@ -23,18 +22,17 @@ Or install it yourself as:
 
 ## Usage
 
-### create bot
+### botの作成
 
-To create a bot, execute the following command.
+botを作成するには、下記のコマンドを実行します。
 
 ```
 rounders new [name]
 ```
 
-### Mail account settings
+### メールアカウントの設定
 
-Set mail account information in `bot/config/initiarizers/ mail.rb` of the generated bot.
-
+生成されたbotの`config/initiarizers/mail.rb`にメールアカウント情報を設定します。
 ```
 Rounders::Receivers::Mail.configure do |config|
   # please show more option
@@ -56,27 +54,32 @@ end
 
 ```
 
-### start bot
+### botの実行
 
-You can start the bot with `bundle exec rounders start`.
+`bundle exec rounders start`でbotをスタートできます。
 
-### Modules
+## Modules
 
+Roundersはそれぞれのモジュールの基底クラスを継承することにより、
+Hookが行われ、システム内に組み込むことができます。
 
-If you want to extend the processing of Rounders. inherit the base class of following modules.
-it is hooked and can be incorporated into the Rounders.
+各モジュールのテンプレートを作成するジェネレータを用意しています。
 
 #### Handlers
 
-Handlers is a module that handles mails.
-Create the Matcher instance with the condition passed as the first argument of `.on`,
-If there is a matching email, If there is a matching email, It passe to the method that passed as the second argument
+Handlersはメールのハンドングを行うモジュールです。
+`.on`の第一引数で渡した条件で下記のMatcherインスタンスを作成し、
+マッチしたメールを、第二引数で渡したメソッドに引き渡します
 
-The `rounders generate handler` command create template of handler into ./plugins/handlers/
+#### Generate Command
+
+下記のように`rounders generate handler`をroudersディレクトリ内で実行することで、
+./app/handlersの中にテンプレートファイルが生成されます。
 
 ```
 rounders generate handler [name] [method1, method2...] `
 ```
+
 ##### example
 
 ```ruby
@@ -92,10 +95,10 @@ module Rounders
 		  :callback_method2)
 ​
       def method1(mail)
-       # The return value of BodyMatcher is assign to Handler#matches.
+        # BodyMatcherの戻り値画が格納されています。
         matches[:body]
         # => #<MatchData "example">
-       	# any process
+       	# 引数のmail、matchesを利用して処理を行えます。
       end
 ​
       def method2(mail)
@@ -112,26 +115,29 @@ end
 
 #### Matchers 
 
-Matcher is a module that performs mail filtering.
-The Matcher must implement 'match' method, and the value returned by this method which returns value assign to Handler#matches
+Matcherはメールのフィルタリングを行うモジュールです。
+`#match`メソッドを実装する必要があり、このメソッドが返した値は、
+Handlersメソッド内で扱えるmatchesに格納されます。
 
+#### Generate Command
 
-The `rounders generate matchers` command create template of matchers into ./plugins/matchers/
+下記のように`rounders generate matchers`をroudersディレクトリ内で実行することで、
+./app/matchers/の中にテンプレートファイルが生成されます。
 
 ```
 rounders generate matchers [name]`
 ```
 
-
-Below is an example of Matcher for filtering / extracting with CSSSelector for HTML mail.
+下記はHTMLメールに対して、CSSセレクタでフィルタ・抽出を行うためのMatcherの実装例です。
 
 #### exmaple
 
-/plugins/matchers/css_selector.rb
+/app/matchers/css_selector.rb
 
 ```ruby
 module Rounders
   module Matchers
+    # クラス名をsnake_caseにした値が、handlerでのkeyになります。
     class CssSelector < Rounders::Matchers::Matcher
       attr_reader :pattern
 
@@ -143,6 +149,7 @@ module Rounders
         return if mail.html_part.blank?
         html_part = Nokogiri::HTML(mail.html_part.body.to_s)
         node = html_part.css(pattern)
+        # 戻り値がmatches[:css_selector]に格納されます。
         node.present? ? node : nil
       end
     end
@@ -151,15 +158,16 @@ end
 
 ```
 
-/plugins/handlers/your_hander.rb
+/app/handlers/your_hander.rb
 ```ruby
 module Rounders
   module Handlers
     class YourHandler < Rounders::Handlers::Handler
-      # css selector match 
+      # 上記のCssSelectorを利用するためにキーを指定して、CSSセレクタを値として渡します。
       on({ css_selector: 'body .header h2' }, method1)
 		  
       def method1(mail)
+        # CssSelectorの戻り値が格納されています。
         matches[:css_selector]
         # =>[#<Nokogiri::XML::Element:0x3fc6d77f6ccc name="h2" children=[#<Nokogiri::XML::Text:0x3fc6d77f6ad8 " head text ">]>]
         matches[:css_selector].to_s
@@ -173,23 +181,13 @@ end
 
 #### Gems
 
-Rounder's module can be distributed as Gem.
-
+RoundersのモジュールはGemとして配布できます。
+上記のCssSelectorをGemにしたものが下記のリポジトリになります。
 - [rounders-css_selector_matcher](https://github.com/rike422/rounders-css_selector_matcher)
 
 #### reciever
 
 coming soon...
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rounders. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
