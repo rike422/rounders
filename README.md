@@ -2,7 +2,7 @@
 
 [日本語README](https://github.com/rike422/rounders/blob/master/README.ja.md)
 
-Rounders is a mail handling framework that emphasizes scalability.
+Rounders is a mail handling framework that emphasizes pluggability.
  It was made with reference to Bot such as [Ruboty](https://github.com/r7kamura/ruboty),[Lita](https://github.com/litaio/lita).
 
 ## Installation
