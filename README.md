@@ -84,12 +84,12 @@ module Rounders
   module Handlers
     class MyHandler < Rounders::Handlers::Handler
       # mail.body is include 'exmpale'
-      on({ body: 'example' }, :callback_method1)
+      on({ body: 'example' }, :method1)
       # body include 'exmpale' AND subject match the /programing (?<name>.+)$/
       on({ 
 		  body: 'example',
 		  subject: /programing (?<name>.+)$/},
-		  :callback_method2)
+		  :method2)
 ​
       def method1(mail)
        # The return value of BodyMatcher is assign to Handler#matches.
@@ -157,7 +157,7 @@ module Rounders
   module Handlers
     class YourHandler < Rounders::Handlers::Handler
       # css selector match 
-      on({ css_selector: 'body .header h2' }, method1)
+      on({ css_selector: 'body .header h2' }, :method1)
 		  
       def method1(mail)
         matches[:css_selector]
