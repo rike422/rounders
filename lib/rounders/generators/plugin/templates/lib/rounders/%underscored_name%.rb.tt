@@ -3,4 +3,5 @@ module Rounders
   end
 end
 
+require 'rounders'
 require 'rounders/<%= underscored_name %>/version'

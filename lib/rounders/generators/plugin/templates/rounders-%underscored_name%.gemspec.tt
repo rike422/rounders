@@ -13,9 +13,8 @@ Gem::Specification.new do |s|
   s.summary     = "TODO: Summary of Rounders::<%= class_name %>."
   s.description = "TODO: Description of Rounders::<%= class_name %>."
   s.license     = "MIT"
-  s.files = Dir["{app,config,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
-  s.file     = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  s.test_files = Dir["spec/**/*"]
+  s.files       = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
+  s.test_files  = Dir["spec/**/*"]
   s.add_dependency 'rounders', '~> <%= Rounders::VERSION %>'
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'
