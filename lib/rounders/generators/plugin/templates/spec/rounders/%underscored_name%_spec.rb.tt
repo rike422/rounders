@@ -1,0 +1,7 @@
+require 'spec_helper.rb'
+
+describe Rounders::<%= namespaced_name %> do
+  it 'has a version number' do
+    expect(Rounders::<%= namespaced_name %>::VERSION).not_to be nil
+  end
+end

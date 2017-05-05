@@ -4,11 +4,19 @@ module Rounders
       class_option :help, type: :boolean, aliases: '-h', desc: 'Help message.'
       package_name 'rounders'
 
-      desc 'new [Path]', 'Generate new application'
-      method_option aliases: '-n'
-      def new(name)
-        Rounders::Generators::App.new(name).generate!
-      end
+      register(
+        Rounders::Generators::AppGenerator,
+        'new',
+        'new <name> <path>',
+        'generate new application'
+      )
+
+      register(
+        Rounders::Generators::PluginGenerator,
+        'plugin',
+        'plugin <name>',
+        'Generate new rounders plugin'
+      )
     end
   end
 end

@@ -2,7 +2,8 @@ module Rounders
   module Handlers
     class Handler
       include Rounders::Plugins::Pluggable
-      attr_reader :matches, :rouder
+      attr_reader :matches, :rounder
+
       class << self
         class Dispatcher
           attr_reader :matcher, :method_name
