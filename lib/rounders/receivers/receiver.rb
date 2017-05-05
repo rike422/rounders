@@ -2,14 +2,6 @@ module Rounders
   module Receivers
     class Receiver
       class << self
-        def create_client(config)
-          retriever = parser.lookup_retriever_method(config.protocol)
-          new(
-            client: retriever.new(config.mail_server_settings),
-            find_options: config.find_options
-          )
-        end
-
         def inherited(child_class)
           child_class.include Rounders::Plugins::Pluggable
           child_class.extend Dry::Configurable
