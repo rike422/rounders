@@ -5,16 +5,17 @@ require 'rounders/<%= underscored_name %>/version'
 
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
-  s.name        = "rounders-<%= underscored_name %>"
+  s.name        = 'rounders-<%= underscored_name %>'
   s.version     = Rounders::<%= class_name %>::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Rounders::<%= class_name %>."
-  s.description = "TODO: Description of Rounders::<%= class_name %>."
-  s.license     = "MIT"
+  s.authors     = ['TODO: Your name']
+  s.email       = ['TODO: Your email']
+  s.homepage    = 'TODO'
+  s.summary     = 'TODO: Summary of Rounders::<%= class_name %>.'
+  s.description = 'TODO: Description of Rounders::<%= class_name %>.'
+  s.license     = 'MIT'
   s.files       = `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
   s.test_files  = Dir["spec/**/*"]
+  s.require_paths = ['app','lib']
   s.add_dependency 'rounders', '~> <%= Rounders::VERSION %>'
   s.add_development_dependency 'bundler'
   s.add_development_dependency 'rake'
