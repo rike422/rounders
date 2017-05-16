@@ -16,6 +16,10 @@ module Rounders
     def receivers
       @_receivers ||= []
     end
+
+    def global?
+      Pathname(Rounders::APP_PATH).exist?
+    end
   end
 end
 
