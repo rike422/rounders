@@ -11,7 +11,7 @@ describe Rounders do
         allow_any_instance_of(Pathname).to receive(:exist?).and_return(false)
       end
       it 'should return false' do
-        expect(Rounders.global?).to be_falsey
+        expect(Rounders.global?).to be_truthy
       end
     end
     context 'when app directory exists' do
@@ -19,7 +19,7 @@ describe Rounders do
         allow_any_instance_of(Pathname).to receive(:exist?).and_return(true)
       end
       it 'should return true' do
-        expect(Rounders.global?).to be_truthy
+        expect(Rounders.global?).to be_falsey
       end
     end
   end

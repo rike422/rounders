@@ -18,7 +18,7 @@ module Rounders
     end
 
     def global?
-      Pathname(Rounders::APP_PATH).exist?
+      !Pathname(Rounders::APP_PATH).exist?
     end
   end
 end
