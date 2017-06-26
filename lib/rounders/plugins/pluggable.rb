@@ -14,8 +14,6 @@ module Rounders
           @feature_name ||= begin
             name_spaces = name.to_s.split('::')
             class_name = name_spaces.last
-            module_name = Rounders::Util.infrect(name_spaces[-2]).singularize.classify
-            class_name.sub!(/#{module_name}$/, '')
             Rounders::Util.infrect(class_name).underscore
           end
         end
