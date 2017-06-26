@@ -73,7 +73,7 @@ describe Rounders::Receivers::Mail do
     it { is_expected.to all be_a(Rounders::Mail) }
     it 'should find unread email' do
       expect(client).to receive(:find).with(
-        keys: %w[NOT SEEN],
+        keys: %w(NOT SEEN),
         count: options[:count],
         delete_after_find: options[:delete_after_find]
       )

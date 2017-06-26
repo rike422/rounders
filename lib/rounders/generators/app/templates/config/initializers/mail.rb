@@ -9,7 +9,6 @@ Rounders::Receivers::Mail.configure do |config|
     password:   ENV['GMAIL_PASSWORD'],
     enable_ssl: true
   }
-  
   config.options = {
     # flag for whether to delete each receive mail after find Default: false
     # delete_after_find: true

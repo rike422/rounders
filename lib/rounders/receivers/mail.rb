@@ -5,7 +5,7 @@ module Rounders
       setting :options, {}
       setting :mail_server_setting
       DEFAULT_FIND_OPTION = {
-        keys: %w[NOT SEEN]
+        keys: %w(NOT SEEN)
       }.freeze
 
       def initialize(client: nil, options: {})
