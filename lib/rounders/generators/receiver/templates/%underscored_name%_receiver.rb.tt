@@ -1,16 +1,12 @@
-module Rounders
-  module Receivers
-    class <%= class_name %> < Rounders::Receivers::Receiver
-      def initialize()
-      end
+class <%= class_name %> < Rounders::Receivers::Receiver
+  def initialize()
+  end
 
-      def receive
-      end
+  def receive
+  end
 
-      class << self
-        def receive
-        end
-      end
+  class << self
+    def receive
     end
   end
 end
