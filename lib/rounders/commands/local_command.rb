@@ -7,7 +7,7 @@ module Rounders
       desc 'start', 'Start the Rounders'
       option aliases: '-s'
       method_option :dotenv, type: :boolean, default: false
-      method_option :deamon, type: :boolean, default: false
+      method_option :daemon, type: :boolean, default: false
       method_option :pid, type: :string
       def start
         rounder = Rounders::Rounder.new(options)

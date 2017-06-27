@@ -9,19 +9,19 @@ describe Rounders::Commands::LocalCommand do
     it 'should support dotenv option' do
       double = instance_double(Rounders::Rounder)
       expect(double).to receive(:start)
-      expect(Rounders::Rounder).to receive(:new).with('dotenv': true, 'deamon': false).and_return(double)
+      expect(Rounders::Rounder).to receive(:new).with('dotenv': true, 'daemon': false).and_return(double)
       Rounders::Commands::LocalCommand.start(%w[start --dotenv])
     end
-    it 'should support deamon option' do
+    it 'should support daemon option' do
       double = instance_double(Rounders::Rounder)
       expect(double).to receive(:start)
-      expect(Rounders::Rounder).to receive(:new).with('dotenv': false, 'deamon': true).and_return(double)
-      Rounders::Commands::LocalCommand.start(%w[start --deamon])
+      expect(Rounders::Rounder).to receive(:new).with('dotenv': false, 'daemon': true).and_return(double)
+      Rounders::Commands::LocalCommand.start(%w[start --daemon])
     end
     it 'should support pidFile option' do
       double = instance_double(Rounders::Rounder)
       expect(double).to receive(:start)
-      expect(Rounders::Rounder).to receive(:new).with('dotenv': false, 'deamon': false, 'pid': './tmp/rounders.pid').and_return(double)
+      expect(Rounders::Rounder).to receive(:new).with('dotenv': false, 'daemon': false, 'pid': './tmp/rounders.pid').and_return(double)
       Rounders::Commands::LocalCommand.start(%w[start --pid ./tmp/rounders.pid])
     end
   end
