@@ -3,8 +3,10 @@ module Rounders
     DEFAULT_ENV = 'development'.freeze
     DEFAULT_INTERVAL = 10
 
-    def dotenv
-      Dotenv.load
+    attr_reader :options
+
+    def initialize(options = {})
+      @options = options
     end
 
     def start
@@ -19,6 +21,14 @@ module Rounders
     rescue ::Bundler::GemfileNotFound => e
       puts e
       exit
+    end
+
+    def daemon
+      Process.daemon(true, false) if options[:daemon]
+    end
+
+    def dotenv
+      Dotenv.load if options[:dotenv]
     end
 
     def env
@@ -51,6 +61,8 @@ module Rounders
     end
 
     def setup
+      daemon
+      dotenv
       bundle
       load_config
       Rounders::Plugins::PluginLoader.load_plugins
