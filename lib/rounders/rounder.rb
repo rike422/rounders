@@ -52,6 +52,13 @@ module Rounders
       end
     end
 
+    def pid
+      path = options[:pid]
+      return if path.nil?
+      File.open(path, 'w') { |f| f.write(Process.pid) }
+      at_exit { File.unlink(path) }
+    end
+
     def round
       handle receive_mail
     end
@@ -63,6 +70,7 @@ module Rounders
     def setup
       daemon
       dotenv
+      pid
       bundle
       load_config
       Rounders::Plugins::PluginLoader.load_plugins

@@ -45,6 +45,19 @@ describe Rounders::Rounder do
           described_instance.start
         end
       end
+      context 'when pid opion is disable' do
+        let(:pid) { './tmp/pid.txt' }
+        let(:arguments) { { 'pid': pid } }
+        before do
+          allow_any_instance_of(Object).to receive(:at_exit)
+        end
+        it 'should write pid to given file path' do
+          file = double('file')
+          expect(file).to receive(:write)
+          expect(File).to receive(:open).with(pid, 'w').and_yield(file)
+          described_instance.start
+        end
+      end
     end
   end
 end
