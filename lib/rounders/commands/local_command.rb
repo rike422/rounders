@@ -5,11 +5,12 @@ module Rounders
       package_name 'rounders'
 
       desc 'start', 'Start the Rounders'
-      method_option aliases: '-s'
-      option :dotenv
+      option aliases: '-s'
+      method_option :dotenv, type: :boolean, default: false
+      method_option :daemon, type: :boolean, default: false
+      method_option :pid, type: :string
       def start
-        rounder = Rounders::Rounder.new
-        rounder.dotenv if options[:dotenv]
+        rounder = Rounders::Rounder.new(options)
         rounder.start
       end
 
