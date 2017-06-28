@@ -53,5 +53,19 @@ module Rounders
     def initialize(mail)
       @mail = mail
     end
+
+    private
+
+    def respond_to_missing?(method, *args, &block)
+      mail.respond_to?(method, *args, &block)
+    end
+
+    def method_missing(method, *args, &block)
+      if mail.respond_to?(method)
+        mail.public_send(method, *args, &block)
+      else
+        super
+      end
+    end
   end
 end
