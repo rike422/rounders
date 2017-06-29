@@ -1,5 +1,6 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'support/custom_matcher/delegate_matcher'
+require 'support/custom_matcher/rawdata_matcher'
 if ENV['CI']
   require 'simplecov'
   require 'coveralls'
