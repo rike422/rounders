@@ -16,6 +16,20 @@ if ENV['CI']
   end
 end
 
+SPEC_ROOT = File.join(File.dirname(__FILE__))
+
+def fixture_path(*path)
+  File.join SPEC_ROOT, 'fixtures', path
+end
+
+def read_raw_fixture(*path)
+  File.open fixture_path(*path), 'rb', &:read
+end
+
+def read_fixture(*path)
+  Mail.read(fixture_path(*path))
+end
+
 require 'rounders'
 require 'rounders/commands/sub_commands/generate'
 require 'rounders/commands/local_command'

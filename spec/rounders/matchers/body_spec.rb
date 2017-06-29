@@ -24,11 +24,21 @@ describe Rounders::Matchers::Body do
   end
 
   describe '#match' do
-    let(:arguments) { [/email/] }
-    let(:message) { Mail.new(body: 'This is a body of the email') }
-    it 'should return MatchData' do
-      expect(message.body).to receive_message_chain(:to_s, :force_encoding, :match).with(arguments[0]).and_return message.body.match(arguments[0])
-      expect(described_instance.match(message)).to_not be_nil
+    context 'when plain text mail' do
+      let(:arguments) { [/テキストメールのテストです/] }
+      let(:message) { read_fixture(%w[emails plain_text.eml]) }
+      it 'should return MatchData' do
+        expect(described_instance.match(message)).to_not be_nil
+        expect(described_instance.match(message).to_s).to eq 'テキストメールのテストです'
+      end
+    end
+    context 'when multipart mail' do
+      let(:arguments) { [/テストメールです/] }
+      let(:message) { read_fixture(%w[emails multi_part.eml]) }
+      it 'should return MatchData' do
+        expect(described_instance.match(message)).to_not be_nil
+        expect(described_instance.match(message).to_s).to eq 'テストメールです'
+      end
     end
     context 'when message.body is nil' do
       let(:message) { Rounders::Mail.new(Mail.new) }

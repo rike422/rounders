@@ -39,6 +39,7 @@ module Rounders
                    :mime_parameters,
                    :mime_type,
                    :mime_version,
+                   :multipart?,
                    :multipart_report?,
                    :part,
                    :parts,
