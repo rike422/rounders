@@ -1,5 +1,6 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'support/custom_matcher/delegate_matcher'
+require 'support/custom_matcher/rawdata_matcher'
 if ENV['CI']
   require 'simplecov'
   require 'coveralls'
@@ -13,6 +14,20 @@ if ENV['CI']
     add_group 'lib', 'lib'
     add_filter '/vendor/'
   end
+end
+
+SPEC_ROOT = File.join(File.dirname(__FILE__))
+
+def fixture_path(*path)
+  File.join SPEC_ROOT, 'fixtures', path
+end
+
+def read_raw_fixture(*path)
+  File.open fixture_path(*path), 'rb', &:read
+end
+
+def read_fixture(*path)
+  Mail.read(fixture_path(*path))
 end
 
 require 'rounders'
