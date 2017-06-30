@@ -19,7 +19,7 @@ module Rounders
     def bundle
       ::Bundler.require(:default, env)
     rescue ::Bundler::GemfileNotFound => e
-      puts e
+      Rounders.logger.error e
       exit
     end
 

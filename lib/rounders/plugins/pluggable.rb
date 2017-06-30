@@ -29,10 +29,10 @@ module Rounders
         def load_plugins
           Pathname.glob("#{load_path}/*.rb").each do |plugin|
             begin
-              puts "load #{plugin.expand_path}"
+              Rounders.logger.info "load #{plugin.expand_path}"
               require_relative plugin.expand_path
             rescue => e
-              puts e
+              Rounders.logger.error e
             end
           end
         end
