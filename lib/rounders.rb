@@ -1,10 +1,23 @@
 require 'rounders/version'
 
+require 'thor'
+require 'thor/group'
+require 'dry-configurable'
+require 'forwardable'
+require 'mail'
+require 'dotenv'
+
+require 'rounders/logger'
+require 'rounders/util'
+
 module Rounders
   # Your code goes here...
   CONFIG_DIR_PATH = File.join(Dir.pwd, 'config').freeze
   APP_PATH = File.join(Dir.pwd, 'app').freeze
+
   class << self
+    attr_accessor :logger
+
     def handlers
       @_handlers ||= []
     end
@@ -21,16 +34,10 @@ module Rounders
       !Pathname(Rounders::APP_PATH).exist?
     end
   end
+
+  self.logger = Logger.get_logger
 end
 
-require 'thor'
-require 'thor/group'
-require 'dry-configurable'
-require 'forwardable'
-require 'mail'
-require 'dotenv'
-
-require 'rounders/util'
 require 'rounders/mail'
 require 'rounders/plugins/plugin_loader'
 require 'rounders/plugins/pluggable'
