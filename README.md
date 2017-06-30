@@ -1,4 +1,4 @@
-# Rounders [![Build Status](https://travis-ci.org/rike422/rounders.svg?branch=master)](https://travis-ci.org/rike422/rounders)  [![Code Climate](https://codeclimate.com/github/rike422/rounders/badges/gpa.svg)](https://codeclimate.com/github/rike422/rounders) [![Coverage Status](https://coveralls.io/repos/github/rike422/rounders/badge.svg?branch=master)](https://coveralls.io/github/rike422/rounders?branch=master)
+# Rounders [![Gem Version](https://badge.fury.io/rb/rounders.svg)](https://badge.fury.io/rb/rounders) [![Build Status](https://travis-ci.org/rike422/rounders.svg?branch=master)](https://travis-ci.org/rike422/rounders)  [![Code Climate](https://codeclimate.com/github/rike422/rounders/badges/gpa.svg)](https://codeclimate.com/github/rike422/rounders) [![Coverage Status](https://coveralls.io/repos/github/rike422/rounders/badge.svg?branch=master)](https://coveralls.io/github/rike422/rounders?branch=master)
 
 [日本語README](https://github.com/rike422/rounders/blob/master/README.ja.md)
 
