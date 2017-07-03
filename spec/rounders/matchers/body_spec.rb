@@ -26,7 +26,7 @@ describe Rounders::Matchers::Body do
   describe '#match' do
     context 'when plain text mail' do
       let(:arguments) { [/テキストメールのテストです/] }
-      let(:message) { read_fixture(%w[emails plain_text.eml]) }
+      let(:message) { Rounders::Mail.new read_fixture(%w[emails plain_text.eml]) }
       it 'should return MatchData' do
         expect(described_instance.match(message)).to_not be_nil
         expect(described_instance.match(message).to_s).to eq 'テキストメールのテストです'
@@ -34,7 +34,7 @@ describe Rounders::Matchers::Body do
     end
     context 'when multipart mail' do
       let(:arguments) { [/テストメールです/] }
-      let(:message) { read_fixture(%w[emails multi_part.eml]) }
+      let(:message) { Rounders::Mail.new read_fixture(%w[emails multi_part.eml]) }
       it 'should return MatchData' do
         expect(described_instance.match(message)).to_not be_nil
         expect(described_instance.match(message).to_s).to eq 'テストメールです'
