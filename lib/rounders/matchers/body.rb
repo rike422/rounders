@@ -8,11 +8,7 @@ module Rounders
       end
 
       def match(mail)
-        if mail.multipart?
-          mail.text_part.decoded.match(pattern)
-        else
-          mail.decoded.match(pattern)
-        end
+        mail.text.match(pattern)
       end
     end
   end
