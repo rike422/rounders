@@ -7,13 +7,14 @@ require 'forwardable'
 require 'mail'
 require 'dotenv'
 
+require 'rounders/application'
 require 'rounders/logger'
 require 'rounders/util'
 
 module Rounders
   # Your code goes here...
   CONFIG_DIR_PATH = File.join(Dir.pwd, 'config').freeze
-  APP_PATH = File.join(Dir.pwd, 'app').freeze
+  APP_PATH = File.join(Dir.pwd, Rounders::Application.app_path).freeze
 
   class << self
     attr_accessor :logger
