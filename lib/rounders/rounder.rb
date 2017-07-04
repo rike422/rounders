@@ -14,6 +14,10 @@ module Rounders
       polling
     end
 
+    def store
+      @store ||= Rounders.stores[Rounders::Application.store].new
+    end
+
     private
 
     def bundle

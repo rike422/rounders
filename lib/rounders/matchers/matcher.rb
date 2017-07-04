@@ -24,10 +24,6 @@ module Rounders
           Rounders.matchers[klass.symbol] = klass
         end
 
-        def symbol
-          Util.infrect(name.split('::').last).underscore.to_sym
-        end
-
         def build(conditions)
           matchers = conditions.map do |key, pattern|
             matcher = Rounders.matchers[key]

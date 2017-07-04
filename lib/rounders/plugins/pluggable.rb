@@ -22,6 +22,10 @@ module Rounders
           @directory_name ||= Util.infrect(feature_name).pluralize
         end
 
+        def symbol
+          Util.infrect(name.split('::').last).underscore.to_sym
+        end
+
         def load_path
           @load_path ||= File.join(Rounders::APP_PATH, directory_name)
         end
