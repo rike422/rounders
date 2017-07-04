@@ -27,7 +27,7 @@ module Rounders
         end
 
         def load_plugins
-          Pathname.glob("#{load_path}/*.rb").each do |plugin|
+          Pathname.glob("#{load_path}/**/*.rb").each do |plugin|
             begin
               Rounders.logger.info "load #{plugin.expand_path}"
               require_relative plugin.expand_path
