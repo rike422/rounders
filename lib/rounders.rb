@@ -19,6 +19,10 @@ module Rounders
   class << self
     attr_accessor :logger
 
+    def global?
+      !Pathname(Rounders::APP_PATH).exist?
+    end
+
     def handlers
       @_handlers ||= []
     end
@@ -31,8 +35,8 @@ module Rounders
       @_receivers ||= []
     end
 
-    def global?
-      !Pathname(Rounders::APP_PATH).exist?
+    def stores
+      @_stores ||= {}
     end
   end
 
@@ -54,7 +58,8 @@ require 'rounders/commander'
 require 'rounders/receivers/receiver'
 require 'rounders/receivers/mail'
 require 'rounders/rounder'
-require 'rounders/brains/base'
+require 'rounders/stores/store'
+require 'rounders/stores/memory'
 
 require 'rounders/generators/base'
 require 'rounders/generators/app/app_generator'
