@@ -25,11 +25,11 @@ describe Rounders::Plugins::Pluggable do
 
   describe '.load_plguins' do
     let!(:mock_glob) do
-      Pathname.glob('spec/rounders/fixtures/app/workers/*.rb')
+      Pathname.glob('spec/rounders/fixtures/app/workers/**/*.rb')
     end
     it 'should load plugin' do
       expect(Pathname).to receive(:glob).
-        with("#{Rounders::APP_PATH}/workers/*.rb").
+        with("#{Rounders::APP_PATH}/workers/**/*.rb").
         and_return mock_glob
       puluggable_class.load_plugins
     end
