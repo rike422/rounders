@@ -7,8 +7,8 @@ require 'forwardable'
 require 'mail'
 require 'dotenv'
 
-require 'rounders/application'
 require 'rounders/logger'
+require 'rounders/application'
 require 'rounders/util'
 
 module Rounders
@@ -40,7 +40,7 @@ module Rounders
     end
   end
 
-  self.logger = Logger.get_logger
+  self.logger = Rounders::Application.logger
 end
 
 require 'rounders/mail'

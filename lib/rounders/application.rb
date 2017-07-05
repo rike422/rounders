@@ -12,6 +12,5 @@ module Rounders
     setting :logger, Rounders::Logger.get_logger, reader: true
 
     setting :store, :memory, reader: true
-    
   end
 end
