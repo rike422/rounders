@@ -5,8 +5,8 @@ Rounders::Receivers::Mail.configure do |config|
   config.mail_server_setting = {
     address:    'imap.gmail.com',
     port:       993,
-    user_name:  ENV['GMAIL_USER_NAME'],
-    password:   ENV['GMAIL_PASSWORD'],
+    user_name:  ENV['USER_NAME'],
+    password:   ENV['PASSWORD'],
     enable_ssl: true
   }
   config.options = {
