@@ -1,6 +1,7 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'support/custom_matcher/delegate_matcher'
 require 'support/custom_matcher/rawdata_matcher'
+
 if ENV['CI']
   require 'simplecov'
   require 'coveralls'
@@ -34,7 +35,6 @@ require 'rounders'
 require 'rounders/commands/sub_commands/generate'
 require 'rounders/commands/local_command'
 require 'rounders/commands/global_command'
-
 
 if RUBY_VERSION < '1.9.3'
   ::Dir.glob(::File.expand_path('../support/*.rb', __FILE__)).each { |f| require File.join(File.dirname(f), File.basename(f, '.rb')) }
