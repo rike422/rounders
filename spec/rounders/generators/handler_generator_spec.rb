@@ -7,4 +7,5 @@ describe Rounders::Generators::HandlerGenerator do
     { name: name }
   end
   let(:name) { 'my_handler' }
+  let(:dummy_app_root) { File.expand_path('../../tmp/dummy_app', __dir__) }
 end
