@@ -5,7 +5,7 @@ module Rounders
       argument :path, type: :string, required: false
 
       def set_destination_root
-        p = path.nil? ? name : path
+        p = path.nil? ? name : File.join(path, name)
         self.destination_root = p
       end
 

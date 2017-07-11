@@ -15,7 +15,7 @@ module Rounders
       register(
         Rounders::Generators::PluginGenerator,
         'plugin',
-        'plugin <name>',
+        'plugin <name> <path>',
         'Generate new rounders plugin'
       )
 
