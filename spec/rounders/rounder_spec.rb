@@ -5,6 +5,16 @@ describe Rounders::Rounder do
   let(:described_instance) { described_class.new(arguments) }
   let(:arguments) { [] }
 
+  describe '#store' do
+    it 'should be return nil' do
+      expect(described_instance.store[:empty_data]).to eq nil
+    end
+    it 'should be to sets and gets value' do
+      described_instance.store[:data] = 'hogehoge'
+      expect(described_instance.store[:data]).to eq 'hogehoge'
+    end
+  end
+
   describe '#start' do
     let(:arguments) { {} }
     it 'should start polling' do

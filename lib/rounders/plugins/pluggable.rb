@@ -22,12 +22,16 @@ module Rounders
           @directory_name ||= Util.infrect(feature_name.split('_').first).pluralize
         end
 
+        def symbol
+          Util.infrect(name.split('::').last).underscore.to_sym
+        end
+
         def load_path
           @load_path ||= File.join(Rounders::APP_PATH, directory_name)
         end
 
         def load_plugins
-          Pathname.glob("#{load_path}/*.rb").each do |plugin|
+          Pathname.glob("#{load_path}/**/*.rb").each do |plugin|
             begin
               Rounders.logger.info "load #{plugin.expand_path}"
               require_relative plugin.expand_path

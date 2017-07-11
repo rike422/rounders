@@ -8,15 +8,20 @@ require 'mail'
 require 'dotenv'
 
 require 'rounders/logger'
+require 'rounders/application'
 require 'rounders/util'
 
 module Rounders
   # Your code goes here...
   CONFIG_DIR_PATH = File.join(Dir.pwd, 'config').freeze
-  APP_PATH = File.join(Dir.pwd, 'app').freeze
+  APP_PATH = File.join(Dir.pwd, Rounders::Application.app_path).freeze
 
   class << self
     attr_accessor :logger
+
+    def global?
+      !Pathname(Rounders::APP_PATH).exist?
+    end
 
     def handlers
       @_handlers ||= []
@@ -30,12 +35,12 @@ module Rounders
       @_receivers ||= []
     end
 
-    def global?
-      !Pathname(Rounders::APP_PATH).exist?
+    def stores
+      @_stores ||= {}
     end
   end
 
-  self.logger = Logger.get_logger
+  self.logger = Rounders::Application.logger
 end
 
 require 'rounders/mail'
@@ -53,7 +58,8 @@ require 'rounders/commander'
 require 'rounders/receivers/receiver'
 require 'rounders/receivers/mail'
 require 'rounders/rounder'
-require 'rounders/brains/base'
+require 'rounders/stores/store'
+require 'rounders/stores/memory'
 
 require 'rounders/generators/base'
 require 'rounders/generators/app/app_generator'

@@ -14,6 +14,10 @@ module Rounders
       polling
     end
 
+    def store
+      @store ||= Rounders.stores[Rounders::Application.store].new
+    end
+
     private
 
     def bundle
@@ -40,8 +44,10 @@ module Rounders
     end
 
     def load_config
-      Pathname.glob(File.join(Dir.pwd, 'config/initializers/*.rb')).each do |config|
-        require_relative config
+      Rounders::Application.load_path.each do |path|
+        Pathname.glob(File.join(Dir.pwd, path)).each do |config|
+          require_relative config
+        end
       end
     end
 

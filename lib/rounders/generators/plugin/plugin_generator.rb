@@ -5,7 +5,9 @@ module Rounders
       argument :path, type: :string, required: false
 
       def set_destination_root
-        self.destination_root = "rounders-#{underscored_name}"
+        n = "rounders-#{underscored_name}"
+        p = path.nil? ? n : File.join(path, n)
+        self.destination_root = p
       end
 
       def create_directory

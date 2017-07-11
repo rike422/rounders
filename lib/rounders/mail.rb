@@ -54,6 +54,14 @@ module Rounders
       @mail = mail
     end
 
+    def text
+      if mail.multipart?
+        mail.text_part.decoded
+      else
+        mail.decoded
+      end
+    end
+
     private
 
     def respond_to_missing?(method, *args, &block)
