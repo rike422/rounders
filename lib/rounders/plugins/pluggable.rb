@@ -19,7 +19,7 @@ module Rounders
         end
 
         def directory_name
-          @directory_name ||= Util.infrect(feature_name).pluralize
+          @directory_name ||= Util.infrect(feature_name.split('_').first).pluralize
         end
 
         def load_path

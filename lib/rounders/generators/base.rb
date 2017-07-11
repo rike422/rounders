@@ -41,7 +41,7 @@ module Rounders
           end
 
           klass.define_singleton_method(:generator_name) do
-            @generator_name ||= feature_name
+            @generator_name ||= feature_name.split('_').first
           end
 
           klass.define_singleton_method(:default_source_root) do
@@ -59,7 +59,7 @@ module Rounders
           end
 
           klass.define_singleton_method(:default_generator_root) do
-            path = Pathname(__FILE__).dirname.join(generator_name.split('_').first).expand_path
+            path = Pathname(__FILE__).dirname.join(generator_name).expand_path
             path if path.exist?
           end
         end
