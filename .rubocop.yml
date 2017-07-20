@@ -1,6 +1,6 @@
 
 AllCops:
-  TargetRubyVersion: 2.3.4
+  TargetRubyVersion: 2.3
   Exclude:
      - 'vendor/**/*'
      - 'spec/fixtures/**/*'
