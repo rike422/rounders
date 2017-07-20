@@ -1,5 +1,4 @@
-Rounders::Application.configure do |config|
+class Rounders::<%= class_name %> < Rounders::Application
   # config.logger = Logger.new('log/rounders.log')
-
   # config.store = :memory
 end

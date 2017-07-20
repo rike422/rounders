@@ -2,6 +2,7 @@ module Rounders
   module Stores
     class Store
       include Rounders::Plugins::Pluggable
+      include Topping::Configurable::Branch
 
       def [](key)
         data[key]

@@ -1,11 +1,13 @@
 module Rounders
   module Receivers
     class Receiver
+      include Topping::Configurable::Branch
+
       class << self
-        def inherited(child_class)
-          child_class.include Rounders::Plugins::Pluggable
-          child_class.extend Dry::Configurable
-          Rounders.receivers << child_class
+        def inherited(klass)
+          super
+          klass.include Rounders::Plugins::Pluggable
+          Rounders.receivers << klass
         end
 
         def receive

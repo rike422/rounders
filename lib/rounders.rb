@@ -2,10 +2,10 @@ require 'rounders/version'
 
 require 'bundler'
 require 'bundler/setup'
+require 'forwardable'
 require 'thor'
 require 'thor/group'
-require 'dry-configurable'
-require 'forwardable'
+require 'topping'
 require 'mail'
 require 'dotenv'
 
@@ -16,7 +16,7 @@ require 'rounders/util'
 module Rounders
   # Your code goes here...
   CONFIG_DIR_PATH = File.join(Dir.pwd, 'config').freeze
-  APP_PATH = File.join(Dir.pwd, Rounders::Application.app_path).freeze
+  APP_PATH = File.join(Dir.pwd, Rounders::Application.config.app_path).freeze
 
   class << self
     attr_accessor :logger
@@ -42,7 +42,7 @@ module Rounders
     end
   end
 
-  self.logger = Rounders::Application.logger
+  self.logger = Rounders::Application.config.logger
 end
 
 require 'rounders/mail'

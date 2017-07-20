@@ -31,24 +31,18 @@ describe Rounders::Receivers::Mail do
       count: 30
     }
   end
+  before(:each) do
+    described_class.configure do |config|
+      config.protocol = protocol
+      config.mail_server_setting = mail_server_setting
+      config.options = options
+    end
+  end
 
   describe '.create' do
-    before(:each) do
-      described_class.configure do |config|
-        config.protocol = protocol
-        config.mail_server_setting = mail_server_setting
-        config.options = options
-      end
-    end
     let(:retriever) { Mail::POP3 }
-    it 'should call Mail::Configuration::lookup_retriever_method' do
-      expect_any_instance_of(::Mail::Configuration).to receive(:lookup_retriever_method).with(protocol).and_call_original
-      expect(described_class.create).to be_a described_class
-    end
     it 'should create Mail::Retriever with' do
-      expect(retriever).to receive(:new).with(mail_server_setting)
-      allow_any_instance_of(Mail::Configuration).to receive(:lookup_retriever_method).and_return(retriever)
-      described_class.create
+      expect(described_class.create).to be_a described_class
     end
   end
 
@@ -60,12 +54,8 @@ describe Rounders::Receivers::Mail do
         delete_after_find: true
       }
     end
-    let(:arguments) do
-      [
-        { client: client, options: options }
-      ]
-    end
     before(:each) do
+      allow(described_instance).to receive(:client).and_return(client)
       allow(client).to receive(:find).and_return(messages)
     end
     subject { described_instance.receive }

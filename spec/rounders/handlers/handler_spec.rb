@@ -6,21 +6,25 @@ describe Rounders::Handlers::Handler do
   let(:rounder) { Rounders::Rounder.new }
   let(:arguments) { [rounder, MatchData] }
   let(:mock_handler_class) do
-    Class.new(Rounders::Handlers::Handler) do
-      on({ to: 'to_someone1@somewhere.com' }, :to_callback)
-      on({ from: 'from_someone_unknown@somewhere.com' }, :from_callback)
-      on({ body: 'body_message2' }, :body_callback)
+    module Rounders
+      module Handlers
+        class MockHandler < Rounders::Handlers::Handler
+          on({ to: 'to_someone1@somewhere.com' }, :to_callback)
+          on({ from: 'from_someone_unknown@somewhere.com' }, :from_callback)
+          on({ body: 'body_message2' }, :body_callback)
 
-      def from_callback(mail)
-        mail
-      end
+          def from_callback(mail)
+            mail
+          end
 
-      def to_callback(mail)
-        mail
-      end
+          def to_callback(mail)
+            mail
+          end
 
-      def body_callback(mail)
-        mail
+          def body_callback(mail)
+            mail
+          end
+        end
       end
     end
   end
@@ -31,21 +35,18 @@ describe Rounders::Handlers::Handler do
   end
 
   describe '.inherited' do
-    let(:inherited_class) do
-      Class.new(Rounders::Handlers::Handler) do
-      end
-    end
     it 'should add to Rounders.handlers' do
-      expect { inherited_class }.to change { Rounders.handlers.length }.by(+1)
+      expect { mock_handler_class }.to change { Rounders.handlers.length }.by(+1)
     end
   end
 
   describe '.on' do
+    let(:mock_handler_class) { Rounders::Handlers::MockHandler }
     let(:mails) do
       (1..3).map do |i|
         Rounders::Mail.new(
           ::Mail.new(
-            to:   "to_someone#{i}@somewhere.com",
+            to: "to_someone#{i}@somewhere.com",
             from: "from_someone#{i}@somewhere.com",
             body: "body_message#{i}"
           )

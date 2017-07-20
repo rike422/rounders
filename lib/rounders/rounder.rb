@@ -15,7 +15,7 @@ module Rounders
     end
 
     def store
-      @store ||= Rounders.stores[Rounders::Application.store].new
+      @store ||= Rounders.stores[Rounders::Application.config.store].new
     end
 
     private
@@ -44,7 +44,7 @@ module Rounders
     end
 
     def load_config
-      Rounders::Application.load_path.each do |path|
+      Rounders::Application.config.load_path.each do |path|
         Pathname.glob(File.join(Dir.pwd, path)).each do |config|
           require_relative config
         end
@@ -74,6 +74,7 @@ module Rounders
     end
 
     def setup
+      Topping.build
       daemon
       dotenv
       pid
