@@ -1,5 +1,7 @@
 require 'rounders/version'
 
+require 'bundler'
+require 'bundler/setup'
 require 'thor'
 require 'thor/group'
 require 'dry-configurable'
