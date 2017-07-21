@@ -7,7 +7,7 @@ require 'rounders/version'
 Gem::Specification.new do |spec|
   spec.name          = 'rounders'
   spec.version       = Rounders::VERSION
-  spec.authors       = ['akira.takahashi']
+  spec.authors       = ['Akira Takahashi']
   spec.email         = ['rike422@gmail.com']
 
   spec.summary       = 'bot-ish pluggable incoming mail processing framework'
@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
   spec.add_dependency 'dotenv'
   spec.add_dependency 'topping'
-  spec.add_dependency 'mail', '~> 2.6.4'
+  spec.add_dependency 'mail', '>= 2.6.4'
   spec.add_dependency 'mail-gpg'
   spec.add_dependency 'hanami-utils'
   spec.add_dependency 'thor'
