@@ -18,6 +18,7 @@ module Rounders
 
       class << self
         def inherited(klass)
+          super
           Rounders.stores[klass.symbol] = klass
         end
       end
