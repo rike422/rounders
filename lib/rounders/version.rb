@@ -1,3 +1,3 @@
 module Rounders
-  VERSION = '0.7.1'.freeze
+  VERSION = '0.7.3'.freeze
 end
