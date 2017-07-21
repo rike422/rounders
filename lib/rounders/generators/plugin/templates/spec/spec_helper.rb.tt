@@ -120,4 +120,5 @@ end
 
 
 require 'rounders'
+require 'rounders/spec'
 require 'rounders/<%= underscored_name %>'

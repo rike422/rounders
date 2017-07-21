@@ -2,6 +2,7 @@ module Rounders
   module Handlers
     class Handler
       include Rounders::Plugins::Pluggable
+      include Topping::Configurable::Branch
       attr_reader :matches, :rounder
 
       class << self
@@ -14,8 +15,9 @@ module Rounders
           end
         end
 
-        def inherited(child_class)
-          Rounders.handlers << child_class
+        def inherited(klass)
+          super
+          Rounders.handlers << klass
         end
 
         def dispatch(rounder, mails)

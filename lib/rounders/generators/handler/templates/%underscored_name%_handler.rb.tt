@@ -1,8 +1,12 @@
-class <%= class_name %> < Rounders::Handlers::Handler
-<% handlers.each do |handler| %>
-  on({ body: 'example' }, :<%= handler %>)<% end -%>
-<% handlers.each do |handler| %>
+module Rounders
+  module Handlers
+    class <%= class_name %> < Rounders::Handlers::Handler
+    <% handlers.each do |handler| %>
+      on({ body: 'example' }, :<%= handler %>)<% end -%>
+    <% handlers.each do |handler| %>
 
-  def <%= handler %>(mail)
-  end<% end %>
+      def <%= handler %>(mail)
+      end<% end %>
+    end
+  end
 end

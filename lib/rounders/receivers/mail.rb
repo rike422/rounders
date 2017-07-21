@@ -1,30 +1,31 @@
 module Rounders
   module Receivers
     class Mail < Rounders::Receivers::Receiver
-      setting :protocol, :imap
-      setting :options, {}
-      setting :mail_server_setting
+      config :protocol, default: :imap, required: true
+      config :options, default: {}, required: true
+      config :mail_server_setting, default: {}, required: true
+
       DEFAULT_FIND_OPTION = {
         keys: %w[NOT SEEN]
       }.freeze
 
-      def initialize(client: nil, options: {})
-        @client = client
-        @options = DEFAULT_FIND_OPTION.merge(options)
+      def client
+        return @client if @client
+        retriever = Rounders::Receivers::Mail.parser.lookup_retriever_method(config.protocol)
+        @client = retriever.new(config.mail_server_setting)
+      end
+
+      def options
+        @options ||= DEFAULT_FIND_OPTION.merge(config.options)
       end
 
       def receive
-        @client.find(@options).map { |message| Rounders::Mail.new(message) }
+        client.find(options).map { |message| Rounders::Mail.new(message) }
       end
 
       class << self
         def create
-          config = Mail.config
-          retriever = parser.lookup_retriever_method(config.protocol)
-          new(
-            client: retriever.new(config.mail_server_setting),
-            options: config.options
-          )
+          new
         end
 
         def receive

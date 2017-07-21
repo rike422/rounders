@@ -1,11 +1,11 @@
 
 AllCops:
-  TargetRubyVersion: 2.3.4
+  TargetRubyVersion: 2.3
   Exclude:
      - 'vendor/**/*'
      - 'spec/fixtures/**/*'
      - 'tmp/**/*'
-     - 'templates/**/*'
+     - 'lib/rounders/generators/**/templates/**/*'
 ##################### Metrics ##################################
 
 Metrics/LineLength:

@@ -1,5 +1,7 @@
 module Rounders
   module Matchers
+    include Topping::Configurable::Branch
+
     class NoImplementError < StandardError
     end
     class Matcher
@@ -21,6 +23,7 @@ module Rounders
 
       class << self
         def inherited(klass)
+          super
           Rounders.matchers[klass.symbol] = klass
         end
 

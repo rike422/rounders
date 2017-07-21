@@ -14,7 +14,7 @@ describe Rounders::Commands::LocalCommand, type: :aruba do
       Rounders::Commands::GlobalCommand.start(%W[new #{app_name} #{work_dir}])
       Dir.chdir(app_dir) do
         stub_const('Rounders::APP_PATH',
-                   File.join(Dir.pwd, Rounders::Application.app_path).freeze)
+                   File.join(Dir.pwd, Rounders::Application.config.app_path).freeze)
         described_class.start(%W[generate matcher #{name} method1])
       end
     end
