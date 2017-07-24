@@ -94,14 +94,14 @@ module Rounders
 		  subject: /programing (?<name>.+)$/},
 		  :callback_method2)
 ​
-      def method1(mail)
+      def method1(mail, matches)
         # BodyMatcherの戻り値画が格納されています。
         matches[:body]
         # => #<MatchData "example">
        	# 引数のmail、matchesを利用して処理を行えます。
       end
 ​
-      def method2(mail)
+      def method2(mail, matches)
         matches[:subject]
       	# => <MatchData "programing ruby" name:"ruby">
       	matches[:subject][:name]
