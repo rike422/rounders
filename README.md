@@ -91,14 +91,14 @@ module Rounders
 		  subject: /programing (?<name>.+)$/},
 		  :method2)
 ​
-      def method1(mail)
+      def method1(mail, matches)
        # The return value of BodyMatcher is assign to Handler#matches.
         matches[:body]
         # => #<MatchData "example">
        	# any process
       end
 ​
-      def method2(mail)
+      def method2(mail, matches)
         matches[:subject]
       	# => <MatchData "programing ruby" name:"ruby">
       	matches[:subject][:name]
