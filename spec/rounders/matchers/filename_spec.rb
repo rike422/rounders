@@ -29,7 +29,7 @@ describe Rounders::Matchers::Filename do
     let(:gif) { read_raw_fixture(%w[attachments test.gif]) }
     let(:zip) { read_raw_fixture(%w[attachments test.zip]) }
     let(:message) do
-      mail = read_fixture(%w[emails plain_text.eml])
+      mail = read_mail_fixture(%w[emails plain_text.eml])
       mail.attachments['test.jpg'] = jpg
       mail.attachments['test.zip'] = zip
       mail.attachments['test.gif'] = gif

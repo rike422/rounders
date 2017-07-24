@@ -1,4 +1,8 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'rounders'
+require 'rounders/test/rspec'
+require 'rounders/<%= underscored_name %>'
+
 if ENV['CI']
   require 'simplecov'
   require 'coveralls'
@@ -117,8 +121,3 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
-
-
-require 'rounders'
-require 'rounders/spec'
-require 'rounders/<%= underscored_name %>'

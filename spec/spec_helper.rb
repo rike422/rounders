@@ -18,24 +18,16 @@ if ENV['CI']
 end
 
 SPEC_ROOT = File.join(File.dirname(__FILE__))
-
-def fixture_path(*path)
-  File.join SPEC_ROOT, 'fixtures', path
-end
-
-def read_raw_fixture(*path)
-  File.open fixture_path(*path), 'rb', &:read
-end
-
-def read_fixture(*path)
-  Mail.read(fixture_path(*path))
-end
-
 require 'rounders'
 require 'rounders/commands/sub_commands/generate'
 require 'rounders/commands/local_command'
 require 'rounders/commands/global_command'
-require 'rounders/spec'
+require 'rounders/test/rspec'
+
+RSpec.configure do |c|
+  # fixture path for rounders
+  c.rounders_fixture_path = File.join(File.dirname(__FILE__), 'fixtures')
+end
 
 if RUBY_VERSION < '1.9.3'
   ::Dir.glob(::File.expand_path('../support/*.rb', __FILE__)).each { |f| require File.join(File.dirname(f), File.basename(f, '.rb')) }

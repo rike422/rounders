@@ -57,13 +57,13 @@ describe Rounders::Mail do
 
   describe '#text' do
     context 'when plain text mail' do
-      let(:mail) { described_class.new(read_fixture(%w[emails plain_text.eml])) }
+      let(:mail) { described_class.new(read_mail_fixture(%w[emails plain_text.eml])) }
       it 'should return text part' do
         expect(mail.text).to eq "このメールはテキストメールのテストです。\r\n"
       end
     end
     context 'when multipart mail' do
-      let(:mail) { described_class.new(read_fixture(%w[emails multi_part.eml])) }
+      let(:mail) { described_class.new(read_mail_fixture(%w[emails multi_part.eml])) }
       it 'should return text part' do
         expect(mail.text).to eq "*概要*\r\n\r\nこのメールはテストメールです\r\n"
       end
