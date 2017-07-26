@@ -6,7 +6,7 @@ require 'forwardable'
 require 'thor'
 require 'thor/group'
 require 'topping'
-require 'mail'
+require 'mail-gpg'
 require 'dotenv'
 
 require 'rounders/logger'

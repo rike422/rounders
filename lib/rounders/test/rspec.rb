@@ -1,9 +1,6 @@
 require_relative 'fixture'
 
 RSpec.configure do |config|
-  config.before(:each) do
-    Topping.build
-  end
   config.include Rounders::Test::Fixture
 end
 
@@ -23,3 +20,5 @@ module Rounders
     initialize_configuration RSpec.configuration
   end
 end
+
+Rounders::Rounder.new.send(:setup)
