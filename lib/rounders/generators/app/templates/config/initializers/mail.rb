@@ -3,10 +3,10 @@ Rounders::Receivers::Mail.configure do |config|
   #
   config.protocol = :imap
   config.mail_server_setting = {
-    address:    'imap.gmail.com',
-    port:       993,
-    user_name:  ENV['USER_NAME'],
-    password:   ENV['PASSWORD'],
+    address:    ENV['IMAP_SERVER_ADDRESS'],
+    port:    ENV['IMAP_SERVER_PORT'],
+    user_name:  ENV['IMAP_USER_NAME'],
+    password:   ENV['IMAP_PASSWORD'],
     enable_ssl: true
   }
   config.options = {
