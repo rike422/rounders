@@ -44,8 +44,8 @@ Rounders::Receivers::Mail.configure do |config|
   config.mail_server_setting = {
     address:    'imap.gmail.com',
     port:       993,
-    user_name:  ENV['GMAIL_USER_NAME'],
-    password:   ENV['GMAIL_PASSWORD'],
+    user_name:  ENV['USER_NAME'],
+    password:   ENV['PASSWORD'],
     enable_ssl: true
   }
   config.options = {
@@ -87,9 +87,9 @@ module Rounders
       on({ body: 'example' }, :method1)
       # body include 'exmpale' AND subject match the /programing (?<name>.+)$/
       on({ 
-		  body: 'example',
-		  subject: /programing (?<name>.+)$/},
-		  :method2)
+	body: 'example',
+	subject: /programing (?<name>.+)$/},
+	:method2)
 ​
       def method1(mail, matches)
        # The return value of BodyMatcher is assign to Handler#matches.
@@ -114,7 +114,6 @@ end
 
 Matcher is a module that performs mail filtering.
 The Matcher must implement 'match' method, and the value returned by this method which returns value assign to Handler#matches
-
 
 The `rounders generate matchers` command create template of matchers into ./plugins/matchers/
 
@@ -176,6 +175,39 @@ end
 Rounder's module can be distributed as Gem.
 
 - [rounders-css_selector_matcher](https://github.com/rike422/rounders-css_selector_matcher)
+
+### Store
+
+Store is module that application memory.
+It can record data like a Hash object.
+ex: `rounders.sotre[{key}] = {value}`
+
+##### example
+
+```ruby
+module Rounders
+  module Handlers
+    class MyHandler < Rounders::Handlers::Handler
+      # mail.body is include 'exmpale'
+      on({ body: 'example' }, :method1)
+​
+      def method1(mail, matches)
+        # initialize :data memory
+     	count = rounders.store[:access] ||
+	count += 1
+	
+	Rounders.logger.info count
+	# log access count
+	rounders.store[:access] = count
+      end
+    end
+  end
+end
+```
+
+#### Gems
+
+- [rounders-yaml](https://github.com/rike422/rounders-yaml)
 
 #### reciever
 
