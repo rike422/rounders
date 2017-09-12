@@ -193,7 +193,7 @@ module Rounders
 ​
       def method1(mail, matches)
         # initialize :data memory
-        count = rounders.store[:access] ||
+        count = rounders.store[:access] || 0
 	
         count += 1
         Rounders.logger.info count
