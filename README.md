@@ -87,9 +87,9 @@ module Rounders
       on({ body: 'example' }, :method1)
       # body include 'exmpale' AND subject match the /programing (?<name>.+)$/
       on({ 
-	body: 'example',
-	subject: /programing (?<name>.+)$/},
-	:method2)
+        body: 'example',
+        subject: /programing (?<name>.+)$/},
+        :method2)
 ​
       def method1(mail, matches)
        # The return value of BodyMatcher is assign to Handler#matches.
@@ -193,12 +193,12 @@ module Rounders
 ​
       def method1(mail, matches)
         # initialize :data memory
-     	count = rounders.store[:access] ||
-	count += 1
+        count = rounders.store[:access] ||
 	
-	Rounders.logger.info count
-	# log access count
-	rounders.store[:access] = count
+        count += 1
+        Rounders.logger.info count
+        # log access count
+        rounders.store[:access] = count
       end
     end
   end
